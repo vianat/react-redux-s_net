@@ -1,0 +1,9 @@
+.main_content > div > img{
+    width: 100%;
+}
+.profile_foto, .profile_info{
+    display: inline-block;
+}
+.profile-info{
+    vertical-align: top;
+}
