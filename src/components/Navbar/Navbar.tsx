@@ -10,13 +10,13 @@ const Navbar = () => {
             <a href="/dialogs">Messeges</a>
         </div>
         <div>
-            <a href="/profile">News</a>
+            <a href="/news">News</a>
         </div>
         <div>
-            <a href="/profile">Music</a>
+            <a href="/music">Music</a>
         </div>
         <div>
-            <a href="/profile">Settings</a>
+            <a href="/settings">Settings</a>
         </div>
 
     </div>
