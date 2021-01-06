@@ -10,4 +10,5 @@
 .main_content{
     grid-area: c;
     background-color: cornsilk;
+    border-radius: 20px;
 }

@@ -4,11 +4,11 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
-// @ts-ignore
-import {BrowserRouter, Route} from "react-router-dom";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
+// @ts-ignore
+import {BrowserRouter, Route} from "react-router-dom";
 
 function App() {
     return (
@@ -22,7 +22,6 @@ function App() {
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
-
                 </div>
             </div>
         </BrowserRouter>

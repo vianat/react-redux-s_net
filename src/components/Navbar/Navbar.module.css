@@ -1,4 +1,12 @@
 .navigation{
     grid-area: n;
     background-color: antiquewhite;
+    padding: 40px;
+    border-radius: 20px;
+}
+.item a{
+    text-decoration: none
+}
+.item a.activeLink{
+    font-weight: bold;
 }

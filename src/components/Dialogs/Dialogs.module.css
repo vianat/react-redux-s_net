@@ -1,0 +1,13 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+}
+.dialogsList {
+
+}
+.dialog{
+    padding: 20px;
+}
+.active{
+    font-weight: bold;
+}
