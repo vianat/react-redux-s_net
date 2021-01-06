@@ -1,0 +1,6 @@
+.profile_foto, .profile_info {
+    display: inline-block;
+}
+.profile_info {
+    vertical-align: top;
+}

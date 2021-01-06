@@ -1,13 +1,15 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 3fr 7fr;
+    grid-template-columns: 2fr 8fr;
 }
 .dialogsList {
-
 }
 .dialog{
     padding: 20px;
 }
 .active{
     font-weight: bold;
+}
+.messege {
+    padding-left: 10%;
 }

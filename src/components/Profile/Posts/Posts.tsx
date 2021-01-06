@@ -15,8 +15,8 @@ const Posts = () => {
             </div>
 
             <Post message="hi its first post" likes={0}/>
-            <Post message="tiktok gavno" likes={77}/>
-            <Post message="fufel" likes={62}/>
+            <Post message="tiktok gavno" likes={177}/>
+            <Post message="you are fufel!" likes={62}/>
 
         </div>
     );
