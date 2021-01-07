@@ -9,7 +9,28 @@ export type postType = {
     text: string,
     likesCount: number
 }
+export type dialogType = {
+    id: number,
+    name: string
+}
+export type messegeType = {
+    id: number,
+    text: string
+}
 
+let dialogs = [
+    {id: 1, name: "Fufeliy"},
+    {id: 2, name: "Evpatiy"},
+    {id: 3, name: "Mefodiy"},
+    {id: 4, name: "Efiopiy"},
+    {id: 5, name: "Gustav"}
+]
+let messeges = [
+    {id: 1, text: "Hi friend"},
+    {id: 2, text: "Wath is going on here?"},
+    {id: 3, text: "Is it react? really?"},
+    {id: 4, text: "Nice !!!"}
+]
 let posts = [
     {id: 1, text: "hi its first post", likesCount: 0},
     {id: 2, text: "tiktok gavno", likesCount: 177},
@@ -18,7 +39,7 @@ let posts = [
 
 ReactDOM.render(
   <React.StrictMode>
-    <App posts={posts}/>
+    <App posts={posts} dialogs={dialogs} messeges={messeges}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

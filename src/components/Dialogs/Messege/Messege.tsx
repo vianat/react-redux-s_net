@@ -1,9 +1,9 @@
 import React from 'react';
 
-type MessegeType = {
+type messegeType = {
     text: string;
 }
-const Messege = (props: MessegeType) => {
+const Messege = (props: messegeType) => {
     return (
         <div>{props.text}</div>
     )
