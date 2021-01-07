@@ -1,6 +1,4 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
-import css from './../Dialogs.module.css'
 
 type MessegeType = {
     text: string;

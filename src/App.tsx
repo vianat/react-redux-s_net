@@ -9,16 +9,22 @@ import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 // @ts-ignore
 import {BrowserRouter, Route} from "react-router-dom";
+import {postType} from "./index";
 
-function App() {
+type propsPostsType = {
+    posts: Array<postType>
+}
+
+function App(props: propsPostsType) {
+
     return (
         <BrowserRouter>
             <div className="app">
                 <Header/>
                 <Navbar/>
                 <div className="main_content">
-                    <Route path='/dialogs' component={Dialogs}/>
-                    <Route path='/profile' component={Profile}/>
+                    <Route path='/dialogs' render={ ()=> <Dialogs /> } />
+                    <Route path='/profile' render={ ()=> <Profile posts={props.posts}/> } />
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
