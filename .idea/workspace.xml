@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b2c1417-4e85-4179-8b38-627bbe5bf315" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/Dialogs/DialogItem/DialogItem.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Dialogs/Messege/Messege.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Dialogs/Dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dialogs/Dialogs.tsx" afterDir="false" />
     </list>
@@ -37,7 +40,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/Profile/ProfileInfo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/Dialogs/DialogItem" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -51,11 +54,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\it-kamasutra\sn\src\components\Dialogs\DialogItem" />
+      <recent name="C:\it-kamasutra\sn\src\components\Dialogs\Messege" />
       <recent name="C:\it-kamasutra\sn\src\components\Profile\ProfileInfo" />
       <recent name="C:\it-kamasutra\sn\src\components\Settings" />
       <recent name="C:\it-kamasutra\sn\src\components\Music" />
-      <recent name="C:\it-kamasutra\sn\src\components\News" />
-      <recent name="D:\it-kamasutra\sn\src\components\Dialogs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\it-kamasutra\sn\src\components\Profile\ProfileInfo" />
@@ -90,7 +93,8 @@
       <workItem from="1609893961252" duration="93000" />
       <workItem from="1609894084112" duration="1382000" />
       <workItem from="1609895602228" duration="5567000" />
-      <workItem from="1609989513714" duration="2996000" />
+      <workItem from="1609989513714" duration="3771000" />
+      <workItem from="1610045262398" duration="2947000" />
     </task>
     <servers />
   </component>
