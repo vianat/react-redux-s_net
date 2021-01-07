@@ -3,11 +3,13 @@ import React from 'react';
 import Post from "./Post/Post";
 
 const Posts = () => {
-    let postData = [
+    let posts = [
         {id: 1, text: "hi its first post", likesCount: 0},
         {id: 2, text: "tiktok gavno", likesCount: 177},
         {id: 3, text: "you are fufel!", likesCount: 62}
     ]
+
+    let postElements = posts.map(el=> <Post message={el.text} likes={el.likesCount}/>)
 
     return (
         <div>
@@ -20,9 +22,7 @@ const Posts = () => {
                 <button>Delete post</button>
             </div>
 
-            <Post message={postData[0].text} likes={postData[0].likesCount}/>
-            <Post message={postData[1].text} likes={postData[1].likesCount}/>
-            <Post message={postData[2].text} likes={postData[2].likesCount}/>
+            {postElements}
 
         </div>
     );
