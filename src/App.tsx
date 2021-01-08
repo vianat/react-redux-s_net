@@ -9,12 +9,19 @@ import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 // @ts-ignore
 import {BrowserRouter, Route} from "react-router-dom";
-import {dialogType, messegeType, postType} from "./index";
+import {dialogType, messegeType, postType} from './redux/state';
+
 
 type propsPostsType = {
-    posts: Array<postType>,
-    dialogs: Array<dialogType>,
-    messeges: Array<messegeType>,
+    state: {
+        profilePage: {
+            posts: Array<postType>
+        },
+        dialogsPage: {
+            dialogs: Array<dialogType>,
+            messeges: Array<messegeType>
+        }
+    }
 }
 
 function App(props: propsPostsType) {
@@ -25,8 +32,10 @@ function App(props: propsPostsType) {
                 <Header/>
                 <Navbar/>
                 <div className="main_content">
-                    <Route path='/dialogs' render={ ()=> <Dialogs dialogs={props.dialogs} messeges={props.messeges}/> } />
-                    <Route path='/profile' render={ ()=> <Profile posts={props.posts}/> } />
+                    <Route path='/dialogs'
+                           render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                    <Route path='/profile'
+                           render={() => <Profile state={props.state.profilePage}/>}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
