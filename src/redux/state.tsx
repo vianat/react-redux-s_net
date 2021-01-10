@@ -1,6 +1,8 @@
+import {renderEntiredTree} from "../render";
+
 export type postType = {
     id: number,
-    text: string,
+    text: string
     likesCount: number
 }
 export type dialogType = {
@@ -15,9 +17,9 @@ export type messegeType = {
 let state = {
     profilePage: {
         posts: [
-            {id: 1, text: "hi its first post", likesCount: 0},
-            {id: 2, text: "tiktok gavno", likesCount: 177},
-            {id: 3, text: "you are fufel!", likesCount: 62}
+            {id: 1, text: "first post", likesCount: 0},
+            {id: 2, text: "tik-tok dno", likesCount: 177},
+            {id: 3, text: "мамкин программист", likesCount: 62}
         ]
     },
     dialogsPage: {
@@ -35,6 +37,28 @@ let state = {
             {id: 4, text: "Nice !!!"}
         ]
     }
+}
+
+export let addMessege = (newMessegeText: string) => {
+    let addMessege = {
+        id: 4,
+        text: newMessegeText
+    }
+    state.dialogsPage.messeges.push(addMessege);
+    renderEntiredTree(state);
+}
+export let addPost = (newPostText: string) => {
+    let addPost = {
+        id: 4,
+        text: newPostText,
+        likesCount: 0,
+    }
+    state.profilePage.posts.push(addPost);
+    renderEntiredTree(state);
+}
+export let removePost = () => {
+    state.profilePage.posts.pop();
+    renderEntiredTree(state);
 }
 
 export default state

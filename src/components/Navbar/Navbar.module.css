@@ -1,8 +1,9 @@
 .navigation{
     grid-area: n;
     background-color: antiquewhite;
-    padding: 40px;
+    padding: 10% 30% 95% 25%;
     border-radius: 20px;
+    margin-right: 10px;
 }
 .item a{
     text-decoration: none
