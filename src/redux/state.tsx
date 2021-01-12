@@ -1,4 +1,4 @@
-import {renderEntiredTree} from "../render";
+import { renderAllApp } from ".."
 
 export type postType = {
     id: number,
@@ -45,7 +45,7 @@ export let addMessege = (newMessegeText: string) => {
         text: newMessegeText
     }
     state.dialogsPage.messeges.push(addMessege);
-    renderEntiredTree(state);
+    renderAllApp()
 }
 export let addPost = (newPostText: string) => {
     let addPost = {
@@ -54,11 +54,14 @@ export let addPost = (newPostText: string) => {
         likesCount: 0,
     }
     state.profilePage.posts.push(addPost);
-    renderEntiredTree(state);
+    renderAllApp()
 }
-export let removePost = () => {
+export let removeLastPost = () => {
     state.profilePage.posts.pop();
-    renderEntiredTree(state);
+    renderAllApp()
 }
-
+export let removeLastMessege = () => {
+    state.dialogsPage.messeges.pop();
+    renderAllApp()
+}
 export default state

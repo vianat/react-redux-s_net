@@ -1,6 +1,6 @@
 import React from 'react';
 import Post from "./Post/Post";
-import {addPost, postType, removePost } from '../../../redux/state';
+import {addPost, postType, removeLastPost } from '../../../redux/state';
 
 type propsPostsType = {
         posts: Array<postType>,
@@ -28,7 +28,7 @@ const Posts = (props: propsPostsType) => {
             <div>
                 <textarea ref={newPost}></textarea>
                 <button onClick={addNewPost}>Add new post</button>
-                <button onClick={removePost}>Delete post</button>
+                <button onClick={removeLastPost}>Delete post</button>
 
             </div>
             {postElements}

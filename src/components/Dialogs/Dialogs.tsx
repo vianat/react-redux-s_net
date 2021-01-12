@@ -2,7 +2,7 @@ import React from 'react';
 import css from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import Messege from './Messege/Messege';
-import {addMessege, dialogType, messegeType} from "../../redux/state";
+import {addMessege, dialogType, messegeType, removeLastMessege} from "../../redux/state";
 
 type dialogsPropsType = {
     state:{
@@ -22,7 +22,7 @@ const Dialogs = (props: dialogsPropsType) => {
     let addNewMessege = () => {
         let newText = newMessege.current?.value
         if(typeof(newText) === "string"){
-                addMessege(newText);
+            addMessege(newText);
         }
     }
 
@@ -37,7 +37,7 @@ const Dialogs = (props: dialogsPropsType) => {
 
                 <textarea ref={newMessege}></textarea>
                 <button onClick={addNewMessege}>Write new messege</button>
-                <button>Delete messege</button>
+                <button onClick={removeLastMessege}>Delete messege</button>
             </div>
 
         </div>
