@@ -1,4 +1,4 @@
-import { renderAllApp } from ".."
+import { RenderAllApp } from ".."
 
 export type postType = {
     id: number,
@@ -20,7 +20,8 @@ let state = {
             {id: 1, text: "first post", likesCount: 0},
             {id: 2, text: "tik-tok dno", likesCount: 177},
             {id: 3, text: "мамкин программист", likesCount: 62}
-        ]
+        ],
+        newPostText: "Type your new post"
     },
     dialogsPage: {
         dialogs: [
@@ -35,7 +36,8 @@ let state = {
             {id: 2, text: "What is going on here?"},
             {id: 3, text: "Is it react? really?"},
             {id: 4, text: "Nice !!!"}
-        ]
+        ],
+        newMessegeText: "Type your new messege"
     }
 }
 
@@ -45,7 +47,15 @@ export let addMessege = (newMessegeText: string) => {
         text: newMessegeText
     }
     state.dialogsPage.messeges.push(addMessege);
-    renderAllApp()
+    RenderAllApp()
+}
+export let updateMessegeText = (text: string) => {
+    state.dialogsPage.newMessegeText = text;
+    RenderAllApp()
+}
+export let removeLastMessege = () => {
+    state.dialogsPage.messeges.pop();
+    RenderAllApp()
 }
 export let addPost = (newPostText: string) => {
     let addPost = {
@@ -54,14 +64,15 @@ export let addPost = (newPostText: string) => {
         likesCount: 0,
     }
     state.profilePage.posts.push(addPost);
-    renderAllApp()
+    RenderAllApp()
+}
+export let updatePostText = (text: string) => {
+    state.profilePage.newPostText = text;
+    RenderAllApp()
 }
 export let removeLastPost = () => {
     state.profilePage.posts.pop();
-    renderAllApp()
+    RenderAllApp()
 }
-export let removeLastMessege = () => {
-    state.dialogsPage.messeges.pop();
-    renderAllApp()
-}
+
 export default state

@@ -11,19 +11,24 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {dialogType, messegeType, postType} from './redux/state';
 import Dialogs from './components/Dialogs/Dialogs';
 
-
 type propsPostsType = {
     state: {
         profilePage: {
-            posts: Array<postType>
+            posts: Array<postType>,
+            newPostText: string
         },
         dialogsPage: {
             dialogs: Array<dialogType>,
-            messeges: Array<messegeType>
+            messeges: Array<messegeType>,
+            newMessegeText: string
         }
     },
-    addMessege: any,
-    addPost: any
+    addMessege: Function,
+    updateMessegeText: Function,
+    removeLastMessege: Function,
+    addPost: Function,
+    updatePostText: Function,
+    removeLastPost: Function
 }
 
 function App(props: propsPostsType) {
@@ -35,9 +40,17 @@ function App(props: propsPostsType) {
                 <Navbar/>
                 <div className="main_content">
                     <Route path='/dialogs'
-                           render={() => <Dialogs state={props.state.dialogsPage} addMessege={props.addMessege}/>}/>
+                           render={() => <Dialogs
+                               state={props.state.dialogsPage}
+                               addMessege={props.addMessege}
+                               updateMessegeText={props.updateMessegeText}
+                               removeLastMessege={props.removeLastMessege}/>}/>
                     <Route path='/profile'
-                           render={() => <Profile state={props.state.profilePage} addPost={props.addPost}/>}/>
+                           render={() => <Profile
+                               state={props.state.profilePage}
+                               addPost={props.addPost}
+                               updatePostText={props.updatePostText}
+                               removeLastPost={props.removeLastPost}/>}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
