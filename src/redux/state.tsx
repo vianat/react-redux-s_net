@@ -1,4 +1,9 @@
-import { RenderAllApp } from ".."
+// import { RenderAllApp } from ".."
+// import {renderEntireTree} from "../index";
+
+let renderEntireTree = (state: stateType) => {
+    console.log("state changed")
+}
 
 export type postType = {
     id: number,
@@ -13,6 +18,17 @@ export type messegeType = {
     id: number,
     text: string
 }
+export type stateType = {
+    profilePage: {
+        posts: Array<postType>,
+        newPostText: string
+    },
+    dialogsPage: {
+        dialogs: Array<dialogType>,
+        messeges: Array<messegeType>,
+        newMessegeText: string
+    }
+}
 
 let state = {
     profilePage: {
@@ -21,7 +37,7 @@ let state = {
             {id: 2, text: "tik-tok dno", likesCount: 177},
             {id: 3, text: "мамкин программист", likesCount: 62}
         ],
-        newPostText: "Type your new post"
+        newPostText: "Type new post"
     },
     dialogsPage: {
         dialogs: [
@@ -37,42 +53,48 @@ let state = {
             {id: 3, text: "Is it react? really?"},
             {id: 4, text: "Nice !!!"}
         ],
-        newMessegeText: "Type your new messege"
+        newMessegeText: "Type new messege"
     }
 }
 
-export let addMessege = (newMessegeText: string) => {
+export let addMessege = () => {
     let addMessege = {
         id: 4,
-        text: newMessegeText
+        text: state.dialogsPage.newMessegeText
     }
     state.dialogsPage.messeges.push(addMessege);
-    RenderAllApp()
+    state.dialogsPage.newMessegeText = "";
+    renderEntireTree(state)
 }
 export let updateMessegeText = (text: string) => {
     state.dialogsPage.newMessegeText = text;
-    RenderAllApp()
+    renderEntireTree(state)
 }
 export let removeLastMessege = () => {
     state.dialogsPage.messeges.pop();
-    RenderAllApp()
+    renderEntireTree(state)
 }
-export let addPost = (newPostText: string) => {
+export let addPost = () => {
     let addPost = {
         id: 4,
-        text: newPostText,
+        text: state.profilePage.newPostText,
         likesCount: 0,
     }
     state.profilePage.posts.push(addPost);
-    RenderAllApp()
+    state.profilePage.newPostText = "";
+    renderEntireTree(state)
 }
 export let updatePostText = (text: string) => {
     state.profilePage.newPostText = text;
-    RenderAllApp()
+    renderEntireTree(state)
 }
 export let removeLastPost = () => {
     state.profilePage.posts.pop();
-    RenderAllApp()
+    renderEntireTree(state)
+}
+
+export const subscribe = (observer: any) => {
+    renderEntireTree = observer;
 }
 
 export default state

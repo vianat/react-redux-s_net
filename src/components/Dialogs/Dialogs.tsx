@@ -23,14 +23,11 @@ const Dialogs = (props: dialogsPropsType) => {
     let newMessege = React.createRef<HTMLTextAreaElement>();
 
     let addNewMessege = () => {
-        let newText = newMessege.current?.value
-        if(typeof(newText) === "string"){
-            props.addMessege(newText);
-        }
+        props.addMessege();
     }
     let changeMessege = () => {
         let newText = newMessege.current?.value;
-       props.updateMessegeText(newText);
+        props.updateMessegeText(newText);
     }
 
     return (

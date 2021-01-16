@@ -2,9 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import state, {addMessege, updateMessegeText, removeLastMessege, addPost, removeLastPost, updatePostText } from './redux/state';
+import state, {
+    addMessege,
+    updateMessegeText,
+    removeLastMessege,
+    addPost,
+    removeLastPost,
+    updatePostText,
+    subscribe, stateType
+} from './redux/state';
 
-export let RenderAllApp = () => {
+let renderEntireTree = (state: stateType) => {
 
     ReactDOM.render(
         <React.StrictMode>
@@ -20,4 +28,6 @@ export let RenderAllApp = () => {
     );
 }
 
-RenderAllApp();
+renderEntireTree(state);
+
+subscribe(renderEntireTree);

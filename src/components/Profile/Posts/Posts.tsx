@@ -19,10 +19,7 @@ const Posts = (props: propsPostsType) => {
     let newPost = React.createRef<HTMLTextAreaElement>();
 
     let addNewPost = () => {
-        let newText = newPost.current?.value
-        if (typeof (newText) === "string") {
-            props.addPost(newText);
-        }
+        props.addPost();
     }
     let changePost = () => {
         let newText = newPost.current?.value;
