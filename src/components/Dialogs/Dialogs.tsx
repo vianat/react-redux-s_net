@@ -10,9 +10,7 @@ type dialogsPropsType = {
         messeges: Array<messegeType>,
         newMessegeText: string
     },
-    addMessege: Function,
-    updateMessegeText: Function,
-    removeLastMessege: Function
+    dispatch: any
 }
 
 const Dialogs = (props: dialogsPropsType) => {
@@ -23,11 +21,11 @@ const Dialogs = (props: dialogsPropsType) => {
     let newMessege = React.createRef<HTMLTextAreaElement>();
 
     let addNewMessege = () => {
-        props.addMessege();
+        props.dispatch({type: "ADD-MESSEGE"});
     }
     let changeMessege = () => {
         let newText = newMessege.current?.value;
-        props.updateMessegeText(newText);
+        props.dispatch( {type: "UPDATE-MESSEGE-TEXT", text: newText} );
     }
 
     return (
@@ -41,7 +39,7 @@ const Dialogs = (props: dialogsPropsType) => {
 
                 <textarea ref={newMessege} onChange={changeMessege} value={props.state.newMessegeText}/>
                 <button onClick={addNewMessege}>Write new messege</button>
-                <button onClick={()=>{props.removeLastMessege()}}>Delete messege</button>
+                <button onClick={()=>{props.dispatch({type:"REMOVE-LAST-MESSEGE"})}}>Delete messege</button>
             </div>
 
         </div>

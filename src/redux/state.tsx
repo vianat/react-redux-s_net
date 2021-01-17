@@ -71,6 +71,51 @@ let store = {
     _callSubscriber(state: stateType) {
         console.log("state changed")
     },
+    subscribe(observer: any) {
+        this._callSubscriber = observer;
+    },
+
+    dispatch(action: any){
+
+        if(action.type === "ADD-MESSEGE"){
+            let addMessege = {
+                id: 4,
+                text: this._state.dialogsPage.newMessegeText
+            }
+            this._state.dialogsPage.messeges.push(addMessege);
+            this._state.dialogsPage.newMessegeText = "";
+            this._callSubscriber(this._state)
+        }
+        if(action.type === "UPDATE-MESSEGE-TEXT"){
+            this._state.dialogsPage.newMessegeText = action.text;
+            this._callSubscriber(this._state)
+        }
+        if(action.type === "REMOVE-LAST-MESSEGE"){
+            this._state.dialogsPage.messeges.pop();
+            this._callSubscriber(this._state)
+        }
+
+        if(action.type === "ADD-POST"){
+            let addPost = {
+                id: 4,
+                text: this._state.profilePage.newPostText,
+                likesCount: 0,
+            }
+            this._state.profilePage.posts.push(addPost);
+            this._state.profilePage.newPostText = "";
+            this._callSubscriber(this._state)
+        }
+        if(action.type === "UPDATE-POST_TEXT"){
+            this._state.profilePage.newPostText = action.text;
+            this._callSubscriber(this._state)
+        }
+        if(action.type === "REMOVE-LAST-POST"){
+            this._state.profilePage.posts.pop();
+            this._callSubscriber(this._state)
+        }
+    },
+
+
     addMessege() {
         let addMessege = {
             id: 4,
@@ -88,6 +133,7 @@ let store = {
         this._state.dialogsPage.messeges.pop();
         this._callSubscriber(this._state)
     },
+
     addPost() {
         let addPost = {
             id: 4,
@@ -105,10 +151,8 @@ let store = {
     removeLastPost() {
         this._state.profilePage.posts.pop();
         this._callSubscriber(this._state)
-    },
-    subscribe(observer: any) {
-        this._callSubscriber = observer;
     }
+
 }
 
 // let renderEntireTree = (state: stateType) => {

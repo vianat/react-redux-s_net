@@ -23,12 +23,7 @@ type propsPostsType = {
             newMessegeText: string
         }
     },
-    addMessege: Function,
-    updateMessegeText: Function,
-    removeLastMessege: Function,
-    addPost: Function,
-    updatePostText: Function,
-    removeLastPost: Function
+    dispatch: any
 }
 
 function App(props: propsPostsType) {
@@ -42,15 +37,11 @@ function App(props: propsPostsType) {
                     <Route path='/dialogs'
                            render={() => <Dialogs
                                state={props.state.dialogsPage}
-                               addMessege={props.addMessege}
-                               updateMessegeText={props.updateMessegeText}
-                               removeLastMessege={props.removeLastMessege}/>}/>
+                               dispatch={props.dispatch}/>}/>
                     <Route path='/profile'
                            render={() => <Profile
                                state={props.state.profilePage}
-                               addPost={props.addPost}
-                               updatePostText={props.updatePostText}
-                               removeLastPost={props.removeLastPost}/>}/>
+                               dispatch={props.dispatch}/>}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>

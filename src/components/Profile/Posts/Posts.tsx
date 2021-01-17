@@ -7,9 +7,7 @@ type propsPostsType = {
         posts: Array<postType>,
         newPostText: string
     },
-    addPost: Function,
-    updatePostText: Function,
-    removeLastPost: Function
+    dispatch: any
 }
 
 const Posts = (props: propsPostsType) => {
@@ -19,11 +17,11 @@ const Posts = (props: propsPostsType) => {
     let newPost = React.createRef<HTMLTextAreaElement>();
 
     let addNewPost = () => {
-        props.addPost();
+        props.dispatch( { type: "ADD-POST"} )
     }
     let changePost = () => {
         let newText = newPost.current?.value;
-        props.updatePostText(newText);
+        props.dispatch( {type: "UPDATE-POST_TEXT", text: newText} );
     }
 
     return (
@@ -34,7 +32,7 @@ const Posts = (props: propsPostsType) => {
             <div>
                 <textarea ref={newPost} onChange={changePost} value={props.state.newPostText}/>
                 <button onClick={addNewPost}>Add new post</button>
-                <button onClick={()=>{props.removeLastPost()}}>Delete post</button>
+                <button onClick={()=>{props.dispatch({type: "REMOVE-LAST-POST"})}}>Delete post</button>
             </div>
             {postElements}
 

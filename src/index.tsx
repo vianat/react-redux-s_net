@@ -9,12 +9,7 @@ let renderEntireTree = (state: stateType) => {
     ReactDOM.render(
         <React.StrictMode>
             <App state={state}
-                 addMessege={store.addMessege.bind(store)}
-                 updateMessegeText={store.updateMessegeText.bind(store)}
-                 removeLastMessege={store.removeLastMessege.bind(store)}
-                 addPost={store.addPost.bind(store)}
-                 updatePostText={store.updatePostText.bind(store)}
-                 removeLastPost={store.removeLastPost.bind(store)}/>
+                 dispatch={store.dispatch.bind(store)}/>
         </React.StrictMode>,
         document.getElementById('root')
     );

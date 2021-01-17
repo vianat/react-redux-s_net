@@ -8,21 +8,17 @@ type propsPostsType = {
         posts: Array<postType>,
         newPostText: string
     },
-    addPost: Function,
-    updatePostText: Function,
-    removeLastPost: Function
+    dispatch: any
 }
 
-const Profile = (props:propsPostsType) => {
+const Profile = (props: propsPostsType) => {
 
     return (
         <div>
             <ProfileInfo />
 
             <Posts state={props.state}
-                   addPost={props.addPost}
-                   updatePostText={props.updatePostText}
-                   removeLastPost={props.removeLastPost}/>
+                   dispatch={props.dispatch}/>
         </div>
     )
 }
