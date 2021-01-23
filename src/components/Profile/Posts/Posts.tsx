@@ -1,6 +1,12 @@
 import React from 'react';
 import Post from "./Post/Post";
-import {postType} from '../../../redux/state';
+import {
+    addNewPostActionCreator,
+    postType,
+    removeLastPostActionCreator,
+    updatePostTextActionCreator
+} from '../../../redux/state';
+
 
 type propsPostsType = {
     state:{
@@ -17,11 +23,14 @@ const Posts = (props: propsPostsType) => {
     let newPost = React.createRef<HTMLTextAreaElement>();
 
     let addNewPost = () => {
-        props.dispatch( { type: "ADD-POST"} )
+        props.dispatch( addNewPostActionCreator() )
     }
     let changePost = () => {
         let newText = newPost.current?.value;
-        props.dispatch( {type: "UPDATE-POST_TEXT", text: newText} );
+        props.dispatch( updatePostTextActionCreator(newText))
+    }
+    let removePost = () => {
+        props.dispatch( removeLastPostActionCreator())
     }
 
     return (
@@ -32,7 +41,7 @@ const Posts = (props: propsPostsType) => {
             <div>
                 <textarea ref={newPost} onChange={changePost} value={props.state.newPostText}/>
                 <button onClick={addNewPost}>Add new post</button>
-                <button onClick={()=>{props.dispatch({type: "REMOVE-LAST-POST"})}}>Delete post</button>
+                <button onClick={()=>{removePost( )}}>Delete post</button>
             </div>
             {postElements}
 

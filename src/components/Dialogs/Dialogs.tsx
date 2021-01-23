@@ -2,7 +2,13 @@ import React from 'react';
 import css from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import Messege from './Messege/Messege';
-import {dialogType, messegeType} from "../../redux/state";
+import {
+    addMessegeActionCreator,
+    dialogType,
+    messegeType,
+    removeLastMessegeActionCreator,
+    updateMessegeTextActionCreator
+} from "../../redux/state";
 
 type dialogsPropsType = {
     state:{
@@ -21,11 +27,14 @@ const Dialogs = (props: dialogsPropsType) => {
     let newMessege = React.createRef<HTMLTextAreaElement>();
 
     let addNewMessege = () => {
-        props.dispatch({type: "ADD-MESSEGE"});
+        props.dispatch( addMessegeActionCreator() );
     }
     let changeMessege = () => {
         let newText = newMessege.current?.value;
-        props.dispatch( {type: "UPDATE-MESSEGE-TEXT", text: newText} );
+        props.dispatch( updateMessegeTextActionCreator(newText) );
+    }
+    let removeMessege = () => {
+        props.dispatch( removeLastMessegeActionCreator() );
     }
 
     return (
@@ -39,9 +48,8 @@ const Dialogs = (props: dialogsPropsType) => {
 
                 <textarea ref={newMessege} onChange={changeMessege} value={props.state.newMessegeText}/>
                 <button onClick={addNewMessege}>Write new messege</button>
-                <button onClick={()=>{props.dispatch({type:"REMOVE-LAST-MESSEGE"})}}>Delete messege</button>
+                <button onClick={()=>{removeMessege()}}>Delete messege</button>
             </div>
-
         </div>
     )
 }

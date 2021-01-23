@@ -1,6 +1,3 @@
-// import { RenderAllApp } from ".."
-// import {renderEntireTree} from "../index";
-
 export type postType = {
     id: number,
     text: string
@@ -38,7 +35,27 @@ export type storeType = {
     subscribe: Function,
 }
 
+const ADD_MESSEGE = "ADD-MESSEGE";
+const UPDATE_MESSEGE_TEXT = "UPDATE-MESSEGE-TEXT";
+const REMOVE_LAST_MESSEGE = "REMOVE-LAST-MESSEGE";
+const ADD_POST = "ADD-POST";
+const UPDATE_POST_TEXT = "UPDATE-POST_TEXT";
+const REMOVE_LAST_POST = "REMOVE-LAST-POST";
+
+export const addMessegeActionCreator = () => ({type: ADD_MESSEGE})
+export const updateMessegeTextActionCreator = (newText: string | undefined) => {
+    return {type: UPDATE_MESSEGE_TEXT, text: newText}
+}
+export const removeLastMessegeActionCreator = () => ({type:REMOVE_LAST_MESSEGE})
+
+export const addNewPostActionCreator = () => ({ type: ADD_POST})
+export const updatePostTextActionCreator = (newText: string | undefined) => {
+    return {type: UPDATE_POST_TEXT, text: newText}
+}
+export const removeLastPostActionCreator = () => ({type: REMOVE_LAST_POST})
+
 let store = {
+
     _state: {
         profilePage: {
             posts: [
@@ -46,7 +63,7 @@ let store = {
                 {id: 2, text: "tik-tok dno", likesCount: 177},
                 {id: 3, text: "мамкин программист", likesCount: 62}
             ],
-            newPostText: "Type new post"
+            newPostText: "Write new post"
         },
         dialogsPage: {
             dialogs: [
@@ -62,7 +79,7 @@ let store = {
                 {id: 3, text: "Is it react? really?"},
                 {id: 4, text: "Nice !!!"}
             ],
-            newMessegeText: "Type new messege"
+            newMessegeText: "Write new messege"
         }
     },
     getState(){
@@ -77,7 +94,7 @@ let store = {
 
     dispatch(action: any){
 
-        if(action.type === "ADD-MESSEGE"){
+        if(action.type === ADD_MESSEGE){
             let addMessege = {
                 id: 4,
                 text: this._state.dialogsPage.newMessegeText
@@ -86,16 +103,16 @@ let store = {
             this._state.dialogsPage.newMessegeText = "";
             this._callSubscriber(this._state)
         }
-        if(action.type === "UPDATE-MESSEGE-TEXT"){
+        if(action.type === UPDATE_MESSEGE_TEXT){
             this._state.dialogsPage.newMessegeText = action.text;
             this._callSubscriber(this._state)
         }
-        if(action.type === "REMOVE-LAST-MESSEGE"){
+        if(action.type === REMOVE_LAST_MESSEGE){
             this._state.dialogsPage.messeges.pop();
             this._callSubscriber(this._state)
         }
 
-        if(action.type === "ADD-POST"){
+        if(action.type === ADD_POST){
             let addPost = {
                 id: 4,
                 text: this._state.profilePage.newPostText,
@@ -105,55 +122,54 @@ let store = {
             this._state.profilePage.newPostText = "";
             this._callSubscriber(this._state)
         }
-        if(action.type === "UPDATE-POST_TEXT"){
+        if(action.type === UPDATE_POST_TEXT){
             this._state.profilePage.newPostText = action.text;
             this._callSubscriber(this._state)
         }
-        if(action.type === "REMOVE-LAST-POST"){
+        if(action.type === REMOVE_LAST_POST){
             this._state.profilePage.posts.pop();
             this._callSubscriber(this._state)
         }
     },
-
-
-    addMessege() {
-        let addMessege = {
-            id: 4,
-            text: this._state.dialogsPage.newMessegeText
-        }
-        this._state.dialogsPage.messeges.push(addMessege);
-        this._state.dialogsPage.newMessegeText = "";
-        this._callSubscriber(this._state)
-    },
-    updateMessegeText(text: string) {
-        this._state.dialogsPage.newMessegeText = text;
-        this._callSubscriber(this._state)
-    },
-    removeLastMessege() {
-        this._state.dialogsPage.messeges.pop();
-        this._callSubscriber(this._state)
-    },
-
-    addPost() {
-        let addPost = {
-            id: 4,
-            text: this._state.profilePage.newPostText,
-            likesCount: 0,
-        }
-        this._state.profilePage.posts.push(addPost);
-        this._state.profilePage.newPostText = "";
-        this._callSubscriber(this._state)
-    },
-    updatePostText(text: string) {
-        this._state.profilePage.newPostText = text;
-        this._callSubscriber(this._state)
-    },
-    removeLastPost() {
-        this._state.profilePage.posts.pop();
-        this._callSubscriber(this._state)
-    }
-
 }
+
+export default store
+// addMessege() {
+//     let addMessege = {
+//         id: 4,
+//         text: this._state.dialogsPage.newMessegeText
+//     }
+//     this._state.dialogsPage.messeges.push(addMessege);
+//     this._state.dialogsPage.newMessegeText = "";
+//     this._callSubscriber(this._state)
+// },
+// updateMessegeText(text: string) {
+//     this._state.dialogsPage.newMessegeText = text;
+//     this._callSubscriber(this._state)
+// },
+// removeLastMessege() {
+//     this._state.dialogsPage.messeges.pop();
+//     this._callSubscriber(this._state)
+// },
+//
+// addPost() {
+//     let addPost = {
+//         id: 4,
+//         text: this._state.profilePage.newPostText,
+//         likesCount: 0,
+//     }
+//     this._state.profilePage.posts.push(addPost);
+//     this._state.profilePage.newPostText = "";
+//     this._callSubscriber(this._state)
+// },
+// updatePostText(text: string) {
+//     this._state.profilePage.newPostText = text;
+//     this._callSubscriber(this._state)
+// },
+// removeLastPost() {
+//     this._state.profilePage.posts.pop();
+//     this._callSubscriber(this._state)
+// }
 
 // let renderEntireTree = (state: stateType) => {
 //     console.log("state changed")
@@ -228,4 +244,3 @@ let store = {
 // }
 //
 // export default state
-export default store
