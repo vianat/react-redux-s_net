@@ -4,11 +4,10 @@ import DialogItem from './DialogItem/DialogItem';
 import Messege from './Messege/Messege';
 import {
     addMessegeActionCreator,
-    dialogType,
-    messegeType,
     removeLastMessegeActionCreator,
     updateMessegeTextActionCreator
-} from "../../redux/state";
+} from "../../redux/dialogs-reducer";
+import {dialogType, messegeType} from "../../redux/state";
 
 type dialogsPropsType = {
     state:{
@@ -36,7 +35,6 @@ const Dialogs = (props: dialogsPropsType) => {
     let removeMessege = () => {
         props.dispatch( removeLastMessegeActionCreator() );
     }
-
     return (
         <div className={css.dialogs}>
             <div className={css.dialogsList}>
@@ -46,7 +44,7 @@ const Dialogs = (props: dialogsPropsType) => {
             <div className={css.messege}>
                 {messegesElements}
 
-                <textarea ref={newMessege} onChange={changeMessege} value={props.state.newMessegeText}/>
+                <textarea placeholder={"Enter your messege"} ref={newMessege} onChange={changeMessege} value={props.state.newMessegeText}/>
                 <button onClick={addNewMessege}>Write new messege</button>
                 <button onClick={()=>{removeMessege()}}>Delete messege</button>
             </div>

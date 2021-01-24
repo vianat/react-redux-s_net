@@ -2,11 +2,10 @@ import React from 'react';
 import Post from "./Post/Post";
 import {
     addNewPostActionCreator,
-    postType,
     removeLastPostActionCreator,
     updatePostTextActionCreator
-} from '../../../redux/state';
-
+} from '../../../redux/profile-reducer';
+import {postType} from "../../../redux/state";
 
 type propsPostsType = {
     state:{
@@ -39,7 +38,7 @@ const Posts = (props: propsPostsType) => {
                 Create new post
             </div>
             <div>
-                <textarea ref={newPost} onChange={changePost} value={props.state.newPostText}/>
+                <textarea placeholder={"Enter your post"} ref={newPost} onChange={changePost} value={props.state.newPostText}/>
                 <button onClick={addNewPost}>Add new post</button>
                 <button onClick={()=>{removePost( )}}>Delete post</button>
             </div>

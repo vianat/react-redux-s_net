@@ -1,3 +1,6 @@
+import dialogsReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
+
 export type postType = {
     id: number,
     text: string
@@ -35,25 +38,6 @@ export type storeType = {
     subscribe: Function,
 }
 
-const ADD_MESSEGE = "ADD-MESSEGE";
-const UPDATE_MESSEGE_TEXT = "UPDATE-MESSEGE-TEXT";
-const REMOVE_LAST_MESSEGE = "REMOVE-LAST-MESSEGE";
-const ADD_POST = "ADD-POST";
-const UPDATE_POST_TEXT = "UPDATE-POST_TEXT";
-const REMOVE_LAST_POST = "REMOVE-LAST-POST";
-
-export const addMessegeActionCreator = () => ({type: ADD_MESSEGE})
-export const updateMessegeTextActionCreator = (newText: string | undefined) => {
-    return {type: UPDATE_MESSEGE_TEXT, text: newText}
-}
-export const removeLastMessegeActionCreator = () => ({type:REMOVE_LAST_MESSEGE})
-
-export const addNewPostActionCreator = () => ({ type: ADD_POST})
-export const updatePostTextActionCreator = (newText: string | undefined) => {
-    return {type: UPDATE_POST_TEXT, text: newText}
-}
-export const removeLastPostActionCreator = () => ({type: REMOVE_LAST_POST})
-
 let store = {
 
     _state: {
@@ -63,7 +47,7 @@ let store = {
                 {id: 2, text: "tik-tok dno", likesCount: 177},
                 {id: 3, text: "мамкин программист", likesCount: 62}
             ],
-            newPostText: "Write new post"
+            newPostText: ""
         },
         dialogsPage: {
             dialogs: [
@@ -79,7 +63,7 @@ let store = {
                 {id: 3, text: "Is it react? really?"},
                 {id: 4, text: "Nice !!!"}
             ],
-            newMessegeText: "Write new messege"
+            newMessegeText: ""
         }
     },
     getState(){
@@ -94,46 +78,51 @@ let store = {
 
     dispatch(action: any){
 
-        if(action.type === ADD_MESSEGE){
-            let addMessege = {
-                id: 4,
-                text: this._state.dialogsPage.newMessegeText
-            }
-            this._state.dialogsPage.messeges.push(addMessege);
-            this._state.dialogsPage.newMessegeText = "";
-            this._callSubscriber(this._state)
-        }
-        if(action.type === UPDATE_MESSEGE_TEXT){
-            this._state.dialogsPage.newMessegeText = action.text;
-            this._callSubscriber(this._state)
-        }
-        if(action.type === REMOVE_LAST_MESSEGE){
-            this._state.dialogsPage.messeges.pop();
-            this._callSubscriber(this._state)
-        }
+        this._state.dialogsPage= dialogsReducer(this._state.dialogsPage, action);
+        this._state.profilePage= profileReducer(this._state.profilePage, action);
 
-        if(action.type === ADD_POST){
-            let addPost = {
-                id: 4,
-                text: this._state.profilePage.newPostText,
-                likesCount: 0,
-            }
-            this._state.profilePage.posts.push(addPost);
-            this._state.profilePage.newPostText = "";
-            this._callSubscriber(this._state)
-        }
-        if(action.type === UPDATE_POST_TEXT){
-            this._state.profilePage.newPostText = action.text;
-            this._callSubscriber(this._state)
-        }
-        if(action.type === REMOVE_LAST_POST){
-            this._state.profilePage.posts.pop();
-            this._callSubscriber(this._state)
-        }
-    },
+        this._callSubscriber(this._state);
+    }
 }
 
 export default store
+// if(action.type === ADD_MESSEGE){
+//     let addMessege = {
+//         id: this._state.dialogsPage.messeges[this._state.dialogsPage.messeges.length-1].id++,
+//         text: this._state.dialogsPage.newMessegeText
+//     }
+//     this._state.dialogsPage.messeges.push(addMessege);
+//     this._state.dialogsPage.newMessegeText = "";
+//     this._callSubscriber(this._state)
+// }
+// if(action.type === UPDATE_MESSEGE_TEXT){
+//     this._state.dialogsPage.newMessegeText = action.text;
+//     this._callSubscriber(this._state)
+// }
+// if(action.type === REMOVE_LAST_MESSEGE){
+//     this._state.dialogsPage.messeges.pop();
+//     this._callSubscriber(this._state)
+// }
+//
+// if(action.type === ADD_POST){
+//     let addPost = {
+//         id: this._state.profilePage.posts[this._state.profilePage.posts.length-1].id++,
+//         text: this._state.profilePage.newPostText,
+//         likesCount: 0,
+//     }
+//     this._state.profilePage.posts.push(addPost);
+//     this._state.profilePage.newPostText = "";
+//     this._callSubscriber(this._state)
+// }
+// if(action.type === UPDATE_POST_TEXT){
+//     this._state.profilePage.newPostText = action.text;
+//     this._callSubscriber(this._state)
+// }
+// if(action.type === REMOVE_LAST_POST){
+//     this._state.profilePage.posts.pop();
+//     this._callSubscriber(this._state)
+// }
+
 // addMessege() {
 //     let addMessege = {
 //         id: 4,
