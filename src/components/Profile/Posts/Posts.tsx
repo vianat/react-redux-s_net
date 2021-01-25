@@ -5,7 +5,7 @@ import {
     removeLastPostActionCreator,
     updatePostTextActionCreator
 } from '../../../redux/profile-reducer';
-import {postType} from "../../../redux/state";
+import {postType} from "../../../redux/store";
 
 type propsPostsType = {
     state:{
@@ -16,7 +16,7 @@ type propsPostsType = {
 }
 
 const Posts = (props: propsPostsType) => {
-
+    debugger
     let postElements = props.state.posts.map(p => <Post message={p.text} likes={p.likesCount}/>)
 
     let newPost = React.createRef<HTMLTextAreaElement>();

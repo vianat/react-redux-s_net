@@ -8,7 +8,7 @@ import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 // @ts-ignore
 import {BrowserRouter, Route} from "react-router-dom";
-import {dialogType, messegeType, postType} from './redux/state';
+import {dialogType, messegeType, postType} from './redux/store';
 import Dialogs from './components/Dialogs/Dialogs';
 
 type propsPostsType = {
@@ -27,7 +27,7 @@ type propsPostsType = {
 }
 
 function App(props: propsPostsType) {
-
+    debugger
     return (
         <BrowserRouter>
             <div className="app">

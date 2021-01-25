@@ -7,7 +7,7 @@ import {
     removeLastMessegeActionCreator,
     updateMessegeTextActionCreator
 } from "../../redux/dialogs-reducer";
-import {dialogType, messegeType} from "../../redux/state";
+import {dialogType, messegeType} from "../../redux/store";
 
 type dialogsPropsType = {
     state:{

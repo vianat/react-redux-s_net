@@ -1,15 +1,23 @@
-import {postType} from "./state";
+// import {postType} from "./store";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_POST_TEXT = "UPDATE-POST_TEXT";
 const REMOVE_LAST_POST = "REMOVE-LAST-POST";
 
-type profileStateType = {
-    posts: Array<postType>,
-    newPostText: string
+let initialState = {
+    posts: [
+        {id: 1, text: "first post", likesCount: 0},
+        {id: 2, text: "tik-tok dno", likesCount: 177},
+        {id: 3, text: "мамкин программист", likesCount: 62}
+    ],
+    newPostText: ""
 }
+// type profileStateType = {
+//     posts: Array<postType>,
+//     newPostText: string
+// }
 
-const profileReducer = (state: profileStateType, action: any) => {
+const profileReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case ADD_POST:
             let addPost = {

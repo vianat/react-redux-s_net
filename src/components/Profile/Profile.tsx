@@ -1,7 +1,7 @@
 import React from 'react';
 import Posts from './Posts/Posts';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {postType} from "../../redux/state";
+import {postType} from "../../redux/store";
 
 type propsPostsType = {
     state:{
@@ -12,7 +12,7 @@ type propsPostsType = {
 }
 
 const Profile = (props: propsPostsType) => {
-
+    debugger
     return (
         <div>
             <ProfileInfo />
