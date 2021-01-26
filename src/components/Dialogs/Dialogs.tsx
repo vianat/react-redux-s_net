@@ -2,11 +2,6 @@ import React from 'react';
 import css from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import Messege from './Messege/Messege';
-import {
-    addMessegeActionCreator,
-    removeLastMessegeActionCreator,
-    updateMessegeTextActionCreator
-} from "../../redux/dialogs-reducer";
 import {dialogType, messegeType} from "../../redux/store";
 
 type dialogsPropsType = {
@@ -15,7 +10,9 @@ type dialogsPropsType = {
         messeges: Array<messegeType>,
         newMessegeText: string
     },
-    dispatch: any
+    addMessege: () => void,
+    changeMessege: (newText: string | undefined) => void,
+    removeMessege: () => void;
 }
 
 const Dialogs = (props: dialogsPropsType) => {
@@ -25,18 +22,16 @@ const Dialogs = (props: dialogsPropsType) => {
 
     let newMessege = React.createRef<HTMLTextAreaElement>();
 
-    let addNewMessege = () => {
-        props.dispatch( addMessegeActionCreator() );
-    }
-    let changeMessege = () => {
+    let addNewMessege = () => props.addMessege()
+    let editMessege = () => {
         let newText = newMessege.current?.value;
-        props.dispatch( updateMessegeTextActionCreator(newText) );
+        props.changeMessege(newText);
     }
-    let removeMessege = () => {
-        props.dispatch( removeLastMessegeActionCreator() );
-    }
+    let deleteMessege = () =>  props.removeMessege()
+
     return (
         <div className={css.dialogs}>
+
             <div className={css.dialogsList}>
                 {dialogsElements}
             </div>
@@ -44,9 +39,9 @@ const Dialogs = (props: dialogsPropsType) => {
             <div className={css.messege}>
                 {messegesElements}
 
-                <textarea placeholder={"Enter your messege"} ref={newMessege} onChange={changeMessege} value={props.state.newMessegeText}/>
+                <textarea placeholder={"Enter your messege"} ref={newMessege} onChange={editMessege} value={props.state.newMessegeText}/>
                 <button onClick={addNewMessege}>Write new messege</button>
-                <button onClick={()=>{removeMessege()}}>Delete messege</button>
+                <button onClick={()=>{deleteMessege()}}>Delete messege</button>
             </div>
         </div>
     )

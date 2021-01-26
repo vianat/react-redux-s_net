@@ -1,10 +1,10 @@
 import React from 'react';
-import Posts from './Posts/Posts';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {postType} from "../../redux/store";
+import PostsContainer from "./Posts/PostsContainer";
 
 type propsPostsType = {
-    state:{
+    store: {
         posts: Array<postType>,
         newPostText: string
     },
@@ -12,13 +12,14 @@ type propsPostsType = {
 }
 
 const Profile = (props: propsPostsType) => {
-    debugger
+
     return (
         <div>
-            <ProfileInfo />
+            <ProfileInfo/>
 
-            <Posts state={props.state}
-                   dispatch={props.dispatch}/>
+            <PostsContainer
+                store={props.store}
+                dispatch={props.dispatch}/>
         </div>
     )
 }

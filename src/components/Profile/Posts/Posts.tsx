@@ -1,51 +1,45 @@
 import React from 'react';
 import Post from "./Post/Post";
-import {
-    addNewPostActionCreator,
-    removeLastPostActionCreator,
-    updatePostTextActionCreator
-} from '../../../redux/profile-reducer';
 import {postType} from "../../../redux/store";
 
 type propsPostsType = {
-    state:{
+    state: {
         posts: Array<postType>,
         newPostText: string
     },
-    dispatch: any
+    addNewPost: () => void,
+    changePost: (newText: string | undefined) => void,
+    removePost: () => void
 }
 
 const Posts = (props: propsPostsType) => {
-    debugger
     let postElements = props.state.posts.map(p => <Post message={p.text} likes={p.likesCount}/>)
 
     let newPost = React.createRef<HTMLTextAreaElement>();
 
-    let addNewPost = () => {
-        props.dispatch( addNewPostActionCreator() )
-    }
-    let changePost = () => {
+    let addPost = () => props.addNewPost()
+    let editPost = () => {
         let newText = newPost.current?.value;
-        props.dispatch( updatePostTextActionCreator(newText))
+        props.changePost(newText);
     }
-    let removePost = () => {
-        props.dispatch( removeLastPostActionCreator())
-    }
+    let deletePost = () => props.removePost()
 
     return (
         <div>
             <div>
                 Create new post
             </div>
+
             <div>
-                <textarea placeholder={"Enter your post"} ref={newPost} onChange={changePost} value={props.state.newPostText}/>
-                <button onClick={addNewPost}>Add new post</button>
-                <button onClick={()=>{removePost( )}}>Delete post</button>
+                <textarea
+                    placeholder={"Enter your post"}
+                    ref={newPost} onChange={editPost}
+                    value={props.state.newPostText}/>
+                <button onClick={addPost}>Add new post</button>
+                <button onClick={() => {deletePost()}}>Delete post</button>
             </div>
             {postElements}
-
         </div>
-
     );
 };
 
