@@ -1,4 +1,5 @@
 .bcgrdimg {
+    margin-bottom: 10px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     height: 200px;
@@ -9,6 +10,11 @@
 
 .profile_foto, .profile_info {
     display: inline-block;
+
+}
+.profile_img {
+    height: 120px;
+    margin-right: 20px;
 }
 .profile_info {
     vertical-align: top;

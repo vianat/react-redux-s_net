@@ -28,14 +28,9 @@ export type stateType = {
 export type storeType = {
     _state: stateType,
     getState: Function,
-    renderEntireTree: Function,
-    addMessege: Function,
-    updateMessegeText: Function,
-    removeLastMessege: Function,
-    addPost: Function,
-    updatePostText: Function,
-    removeLastPost: Function,
+    _callSubscriber: Function,
     subscribe: Function,
+    dispatch: Function
 }
 
 let store = {
