@@ -13,8 +13,6 @@ type propsPostsType = {
 
 const PostsContainer = (props: propsPostsType) => {
 
-
-
     return (
         <StoreContext.Consumer>
             {
@@ -35,7 +33,7 @@ const PostsContainer = (props: propsPostsType) => {
                 }
             }
         </StoreContext.Consumer>
-)
+    )
 }
 
 export default PostsContainer;
