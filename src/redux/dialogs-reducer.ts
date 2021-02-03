@@ -26,31 +26,39 @@ type dialogsStateType = {
     newMessegeText: string
 }
 
-const dialogsReducer = (state = initialState, action: any) => {
+const dialogsReducer = (state:dialogsStateType = initialState, action: any) => {
+
+    let stateCopy; // работаем с копией стейта обязательно
+
     switch (action.type) {
-        case ADD_MESSEGE:
+        case ADD_MESSEGE: {
             let addMessege = {
                 id: state.messeges[state.messeges.length - 1].id++,
                 text: state.newMessegeText
             }
-            state.messeges.push(addMessege);
-            state.newMessegeText = "";
-            return state;
-        case UPDATE_MESSEGE_TEXT:
-            state.newMessegeText = action.text;
-            return state;
-        case REMOVE_LAST_MESSEGE:
-            state.messeges.pop();
-            return state;
+            stateCopy = {...state,
+                        messeges: [...state.messeges, addMessege], // копируем собщения + пушим новое
+                        newMessegeText: ""}                         // затираем ввод ввод после пуша
+
+            return stateCopy;
+        }
+
+        case UPDATE_MESSEGE_TEXT: {
+            return {...state, newMessegeText: action.text};
+        }
+
+        case REMOVE_LAST_MESSEGE: {
+            stateCopy = {...state}
+            stateCopy.messeges.pop();
+            return stateCopy;
+        }
         default :
             return state;
     }
 }
 
 export const addMessegeActionCreator = () => ({type: ADD_MESSEGE})
-export const updateMessegeTextActionCreator = (newText: string | undefined) => {
-    return {type: UPDATE_MESSEGE_TEXT, text: newText}
-}
+export const updateMessegeTextActionCreator = (newText: string | undefined) => ({type: UPDATE_MESSEGE_TEXT, text: newText})
 export const removeLastMessegeActionCreator = () => ({type:REMOVE_LAST_MESSEGE})
 
 export default dialogsReducer;

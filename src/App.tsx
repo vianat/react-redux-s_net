@@ -9,22 +9,22 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Profile from "./components/Profile/Profile";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-type propsPostsType = {
-    // state: {
-    //     profilePage: {
-    //         posts: Array<postType>,
-    //         newPostText: string
-    //     },
-    //     dialogsPage: {
-    //         dialogs: Array<dialogType>,
-    //         messeges: Array<messegeType>,
-    //         newMessegeText: string
-    //     }
-    // },
-    // dispatch: any
-}
+// type propsPostsType = {
+//     state: {
+//         profilePage: {
+//             posts: Array<postType>,
+//             newPostText: string
+//         },
+//         dialogsPage: {
+//             dialogs: Array<dialogType>,
+//             messeges: Array<messegeType>,
+//             newMessegeText: string
+//         }
+//     },
+//     dispatch: any
+// }
 
-function App(props: propsPostsType) {
+function App() {
 
     return (
         <BrowserRouter>

@@ -1,4 +1,4 @@
-// import {postType} from "./store";
+import {postType} from "./store";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_POST_TEXT = "UPDATE-POST_TEXT";
@@ -12,37 +12,42 @@ let initialState = {
     ],
     newPostText: ""
 }
-// type profileStateType = {
-//     posts: Array<postType>,
-//     newPostText: string
-// }
+type profileStateType = {
+    posts: Array<postType>,
+    newPostText: string
+}
 
-const profileReducer = (state = initialState, action: any) => {
+const profileReducer = (state:profileStateType = initialState, action: any) => {
+
+    let stateCopy; // работаем с копией стейта обязательно
+
     switch (action.type) {
         case ADD_POST:
             let addPost = {
                 id: state.posts[state.posts.length - 1].id++,
                 text: state.newPostText,
-                likesCount: 0,
+                likesCount: 0
             }
-            state.posts.push(addPost);
-            state.newPostText = "";
-            return state;
+            stateCopy = {...state,
+                    posts: [...state.posts, addPost],   // копируем посты + пушим новый
+                    newPostText: ""                     // затираем ввод ввод после пуша
+            }
+            return stateCopy;
+
         case UPDATE_POST_TEXT:
-            state.newPostText = action.text;
-            return state;
+            return {...state, newPostText: action.text}
+
         case REMOVE_LAST_POST:
-            state.posts.pop();
-            return state;
+            stateCopy = {...state}
+            stateCopy.posts.pop();
+            return stateCopy;
         default :
             return state;
     }
 }
 
 export const addNewPostActionCreator = () => ({ type: ADD_POST})
-export const updatePostTextActionCreator = (newText: string | undefined) => {
-    return {type: UPDATE_POST_TEXT, text: newText}
-}
+export const updatePostTextActionCreator = (newText: string | undefined) => ({type: UPDATE_POST_TEXT, text: newText})
 export const removeLastPostActionCreator = () => ({type: REMOVE_LAST_POST})
 
 export default profileReducer;

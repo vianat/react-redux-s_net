@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     addMessegeActionCreator,
     removeLastMessegeActionCreator,
@@ -7,14 +6,14 @@ import {
 import Dialogs from "./Dialogs";
 import { connect } from 'react-redux'
 
-type dialogsPropsType = {
-    // store: {
-    //     dialogs: Array<dialogType>,
-    //     messeges: Array<messegeType>,
-    //     newMessegeText: string
-    // },
-    // dispatch: any
-}
+// type dialogsPropsType = {
+//     store: {
+//         dialogs: Array<dialogType>,
+//         messeges: Array<messegeType>,
+//         newMessegeText: string
+//     },
+//     dispatch: any
+// }
 
 // const DialogsContainer = (props: dialogsPropsType) => {
 //

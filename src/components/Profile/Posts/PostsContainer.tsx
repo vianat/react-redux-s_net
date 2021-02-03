@@ -1,15 +1,14 @@
-import React from 'react';
 import {addNewPostActionCreator, removeLastPostActionCreator, updatePostTextActionCreator } from '../../../redux/profile-reducer';
 import Posts from "./Posts";
 import { connect } from 'react-redux'
 
-type propsPostsType = {
-    // store: {
-    //     posts: Array<postType>,
-    //     newPostText: string
-    // },
-    // dispatch: any
-}
+// type propsPostsType = {
+//     store: {
+//         posts: Array<postType>,
+//         newPostText: string
+//     },
+//     dispatch: any
+// }
 
 // const PostsContainer = (props: propsPostsType) => {
 //
@@ -38,7 +37,7 @@ type propsPostsType = {
 
 let mapStateToProps = (state: any) => {
     return {
-        state: state.dialogsPage
+        state: state.profilePage
     }
 }
 let mapDispatchToProps = (dispatch: any) => {

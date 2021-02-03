@@ -65,7 +65,7 @@ let store = {
         return this._state
     },
     _callSubscriber(state: stateType) {
-        console.log("state changed")
+        console.log("state was changing")
     },
     subscribe(observer: any) {
         this._callSubscriber = observer;
