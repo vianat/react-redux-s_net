@@ -1,5 +1,6 @@
 import dialogsReducer from "./dialogs-reducer";
 import profileReducer from "./profile-reducer";
+import {userType} from "./users-reducer";
 
 export type postType = {
     id: number,
@@ -23,7 +24,8 @@ export type stateType = {
         dialogs: Array<dialogType>,
         messeges: Array<messegeType>,
         newMessegeText: string
-    }
+    },
+    users: Array<userType>
 }
 export type storeType = {
     _state: stateType,
@@ -59,7 +61,15 @@ let store = {
                 {id: 4, text: "Nice !!!"}
             ],
             newMessegeText: ""
-        }
+        },
+        users: [
+            {id: 1, photoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8LOaJsHOpxe04L9zVAU3oRGrhKtcn-hirSQ&usqp=CAU",
+                followed: false, fullName: "Masha", status: "the boss",  location:{city: "Sacramento", country: "USA"}},
+            {id: 2, photoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8LOaJsHOpxe04L9zVAU3oRGrhKtcn-hirSQ&usqp=CAU",
+                followed: true,  fullName: "Dasha", status: "the fufel", location:{city: "Boston", country: "USA"}},
+            {id: 3, photoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8LOaJsHOpxe04L9zVAU3oRGrhKtcn-hirSQ&usqp=CAU",
+                followed: false, fullName: "Pasha", status: "the mufel", location:{city: "Denwer", country: "USA"}}
+        ]
     },
     getState(){
         return this._state
