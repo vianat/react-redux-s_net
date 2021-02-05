@@ -64,3 +64,4 @@ export const unfollowAC = (userID: number) => ({ type: UNFOLLOW, userID})
 export const setUsersAC = (users: any) => ({ type: SET_USERS, users})
 
 export default usersReducer;
+

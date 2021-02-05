@@ -3,27 +3,27 @@ import {userType} from "../../redux/users-reducer";
 import axios from "axios";
 import userPhoto from "./../../Assets/images/images.png"
 
-type userPropsType = {
+interface State {}  // костыль взял на стекеОвер, типа типизации пропсов
+interface PropsType {   // костыль взял на стекеОвер, типа типизации пропсов
     users: Array<userType>
     follow: (userID: number)=> void,
     unfollow: (userID: number)=> void
     setUsers: (users: Array<userType>) => void
 }
 
-const Users = (props: userPropsType) => {
+class Users extends React.Component< PropsType, State > {
 
-    let getUsers = () => {
-    if(props.users.length !== 0){
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then( response => {
-            props.setUsers(response.data.items)
-        })
+    constructor(props: PropsType) {  // при вызове компоненты, происходит создание обьекта и иницилизируем стейт
+        super(props);
+        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+             .then( response => {this.props.setUsers(response.data.items)} )
     }
-    }
-    return <div>
-        <button onClick={getUsers}>Get Users</button>
-        {
-            props.users.map(u =>
-                <div key={u.id}>
+
+    render() {
+        return <div>
+            {
+                this.props.users.map(u =>
+                    <div key={u.id}>
                     <span>
                         <div>
                             <span>{u.name}</span>
@@ -31,20 +31,21 @@ const Users = (props: userPropsType) => {
                         </div>
                         <div>
                             {u.followed     //
-                            ? <button onClick={ () => {props.unfollow(u.id)}}> Unfollow</button>
-                            : <button onClick={ () => {props.follow(u.id)}}> follow</button>}
+                                ? <button onClick={ () => {this.props.unfollow(u.id)}}> Unfollow</button>
+                                : <button onClick={ () => {this.props.follow(u.id)}}> follow</button>}
                         </div>
                     </span>
 
-                    <span>
+                        <span>
                         <div> {"u.location.city"}</div>
                         <div> {"u.location.country"}</div>
                     </span>
-                    <div><hr/></div>
-                </div>
-            )
-        }
-    </div>
+                        <div><hr/></div>
+                    </div>
+                )
+            }
+        </div>
+    }
 }
 
 export default Users;

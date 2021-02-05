@@ -18,8 +18,3 @@ let mapDispatchToProps = (dispatch: any) => {
 let UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
 
 export default UsersContainer;
-
-
-
-
-
