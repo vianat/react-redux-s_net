@@ -1,63 +1,41 @@
-import React from 'react';
+import React from "react";
+import css from "./Users.module.css";
+import userPhoto from "../../Assets/images/images.png";
 import {userType} from "../../redux/users-reducer";
-import axios from "axios";
-import userPhoto from "./../../Assets/images/images.png"
-import css from "./Users.module.css"
 
-interface State {}  // костыль взял на стекеОвер, типа типизации пропсов
-interface PropsType {   // костыль взял на стекеОвер, типа типизации пропсов
+type propsUsersType = {
     users: Array<userType>
-    pageSize: number,
-    totalUsersCount: number,
-    currentPage: number,
-    follow: (userID: number)=> void,
-    unfollow: (userID: number)=> void
-    setUsers: (users: Array<userType>) => void
-    setCurrentPage: (currentPage: number) => void
-    setTotalUsersCount: (count: number) => void
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+    follow: (userID: number) => void,
+    unfollow: (userID: number) => void
+    onPageChanger: (page: number)=> void
 }
 
-class Users extends React.Component< PropsType, State > {
+const Users = (props: propsUsersType) => {
 
-    // constructor(props: PropsType) { super(props)} // если конструктор только кидает пропсы родителю, он не обязателен
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages = []
+    let style = css.selectedPages
+    for (let i = 1; i <= pagesCount; i++){pages.push(i)}
 
-    componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-             .then( response => {
-                 this.props.setUsers(response.data.items)
-                 this.props.setTotalUsersCount(response.data.totalCount)
-             })
-    }
+    return <div>
 
-    onPageChanger = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-            .then( response => {this.props.setUsers(response.data.items)} )
-    }
+        <div className={css.breadCrumbs}>
+            {pages.map( p => {
+                if(p === props.currentPage){        // костыль с if для смены стиля,
+                    return <span className={style}       // нужно через условное присваивание в className={this.props.currentPage === p && css.selectedPages}
+                                 onClick={ (e) => {props.onPageChanger(p)} }>{p}</span>
+                }else {
+                    return <span onClick={ (e) => {props.onPageChanger(p)} }>{p}</span>
+                }
+            })}
+        </div>
 
-    render() {
-
-        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-        let pages = []
-        let style = css.selectedPages
-        for (let i = 1; i <= pagesCount; i++){pages.push(i)}
-
-        return <div>
-
-            <div className={css.breadCrumbs}>
-                {pages.map( p => {
-                    if(p === this.props.currentPage){        // костыль с if для смены стиля,
-                        return <span className={style}       // нужно через условное присваивание в className={this.props.currentPage === p && css.selectedPages}
-                                     onClick={ (e) => {this.onPageChanger(p)} }>{p}</span>
-                    }else {
-                        return <span onClick={ (e) => {this.onPageChanger(p)} }>{p}</span>
-                    }
-                })}
-            </div>
-
-            {
-                this.props.users.map(u =>
-                    <div key={u.id}>
+        {
+            props.users.map(u =>
+                <div key={u.id}>
                     <span>
                         <div>
                             <span>{u.name}</span>
@@ -65,8 +43,8 @@ class Users extends React.Component< PropsType, State > {
                         </div>
                         <div>
                             {u.followed     //
-                                ? <button onClick={ () => {this.props.unfollow(u.id)}}> Unfollow</button>
-                                : <button onClick={ () => {this.props.follow(u.id)}}> follow</button>}
+                                ? <button onClick={ () => {props.unfollow(u.id)}}> Unfollow</button>
+                                : <button onClick={ () => {props.follow(u.id)}}> follow</button>}
                         </div>
                     </span>
 
@@ -74,12 +52,13 @@ class Users extends React.Component< PropsType, State > {
                         <div> {"u.location.city"}</div>
                         <div> {"u.location.country"}</div>
                     </span>
-                        <div><hr/></div>
-                    </div>
-                )
-            }
-        </div>
-    }
+                    <div><hr/></div>
+                </div>
+            )
+        }
+    </div>
+
+
 }
 
 export default Users;
