@@ -1,8 +1,39 @@
-import {postType} from "./store";
-
 const ADD_POST = "ADD-POST";
 const UPDATE_POST_TEXT = "UPDATE-POST_TEXT";
 const REMOVE_LAST_POST = "REMOVE-LAST-POST";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
+
+export type profileType = {
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string | null
+    fullName: string
+    contacts: ContactsType
+    photos: PhotosType
+}
+export type ContactsType = {
+    github: string | null
+    vk: string | null
+    facebook: string | null
+    instagram: string | null
+    twitter: string | null
+    website: string | null
+    youtube: string | null
+    mainLink: string | null
+}
+export type PhotosType = { small: string, large: string }
+
+export type profileStateType = {
+    posts: Array<postType>,
+    newPostText: string,
+    profile: profileType
+}
+export type postType = {
+    id: number,
+    text: string
+    likesCount: number
+}
+
 
 let initialState = {
     posts: [
@@ -10,14 +41,11 @@ let initialState = {
         {id: 2, text: "tik-tok dno", likesCount: 177},
         {id: 3, text: "мамкин программист", likesCount: 62}
     ],
-    newPostText: ""
-}
-type profileStateType = {
-    posts: Array<postType>,
-    newPostText: string
+    newPostText: "",
+    profile: null
 }
 
-const profileReducer = (state:profileStateType = initialState, action: any) => {
+const profileReducer = (state: any = initialState, action: any) => {
 
     let stateCopy; // работаем с копией стейта обязательно
 
@@ -34,20 +62,22 @@ const profileReducer = (state:profileStateType = initialState, action: any) => {
             }
             return stateCopy;
 
-        case UPDATE_POST_TEXT:
-            return {...state, newPostText: action.text}
+        case UPDATE_POST_TEXT: return {...state, newPostText: action.text}
 
         case REMOVE_LAST_POST:
             stateCopy = {...state}
             stateCopy.posts.pop();
             return stateCopy;
-        default :
-            return state;
+
+        case SET_USER_PROFILE: return {...state, profile: action.profile}
+
+        default : return state;
     }
 }
 
 export const addNewPostActionCreator = () => ({ type: ADD_POST})
 export const updatePostTextActionCreator = (newText: string | undefined) => ({type: UPDATE_POST_TEXT, text: newText})
 export const removeLastPostActionCreator = () => ({type: REMOVE_LAST_POST})
+export const setUserProfile = (profile: string) => ({type: SET_USER_PROFILE, profile })
 
 export default profileReducer;

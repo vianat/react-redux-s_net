@@ -5,13 +5,6 @@ const FOLLOW = "FOLLOW",
       SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT",
       TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
-let initialState = {
-    users: [],
-    pageSize: 100,
-    totalUsersCount: 0,
-    currentPage: 1,
-    isFetching: true
-}
 export type userType = {
     id: number,
     photos: string
@@ -23,7 +16,21 @@ export type userType = {
         country: string
     }
 }
-type usersStateType = {users: Array<userType>}
+type usersStateType = {
+    users: Array<userType>,
+    pageSize: number,
+    totalUsersCount: number,
+    currentPage: number,
+    isFetching: boolean
+}
+
+let initialState = {
+    users: [],
+    pageSize: 100,
+    totalUsersCount: 0,
+    currentPage: 1,
+    isFetching: true
+}
 
 const usersReducer = (state:usersStateType = initialState, action: any) => {
 

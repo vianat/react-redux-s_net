@@ -1,6 +1,6 @@
 import React from 'react';
 import Post from "./Post/Post";
-import {postType} from "../../../redux/store";
+import {postType} from "../../../redux/profile-reducer";
 
 type propsPostsType = {
     state: {

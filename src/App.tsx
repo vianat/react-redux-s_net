@@ -10,21 +10,6 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 
-// type propsPostsType = {
-//     state: {
-//         profilePage: {
-//             posts: Array<postType>,
-//             newPostText: string
-//         },
-//         dialogsPage: {
-//             dialogs: Array<dialogType>,
-//             messeges: Array<messegeType>,
-//             newMessegeText: string
-//         }
-//     },
-//     dispatch: any
-// }
-
 function App() {
 
     return (

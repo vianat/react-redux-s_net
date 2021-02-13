@@ -1,32 +1,38 @@
 import React from 'react';
 import Profile from "./Profile";
 import axios from "axios";
+import {connect} from "react-redux";
+import {profileStateType, setUserProfile} from "../../redux/profile-reducer";
+import {stateAllType} from "../../redux/redux-store";
 
 interface State {
 }  // костыль со стекеОвер, типа типизации пропсов
-interface PropsType {   // костыль со стекеОвер, типа типизации пропсов
-    // users: Array<userType>
-    // setUsers: (users: Array<userType>) => void
-    // setTotalUsersCount: (count: number) => void
-    // setToggleIsFetching: (isFetching: boolean) => void
+type ProfileContainerPropsType = {   // костыль со стекеОвер, типа типизации пропсов
+
+    profile: profileStateType
+
+    // addNewPostActionCreator: () => void
+    // updatePostTextActionCreator:(newText: string | undefined) => void
+    // removeLastPostActionCreator:() => void
+    setUserProfile: any
 }
-class ProfileContainer extends React.Component<PropsType, State> {
+class ProfileContainer extends React.Component<ProfileContainerPropsType, State> {
 
     componentDidMount() {
-        // this.props.setToggleIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
             .then(response => {
+                debugger
                 this.props.setUserProfile(response.data)
             })
     }
 
     render() {
-        return (
-            <div>
-                <Profile />
-            </div>
-        );
+        return  <div>
+                    <Profile {...this.props} profile={this.props.profile}/>
+                </div>
     }
 };
 
-export default ProfileContainer;
+let mapStateToProps = (state: stateAllType) => ( { profile: state.profilePage.profile} )
+
+export default connect(mapStateToProps, {setUserProfile})(ProfileContainer);

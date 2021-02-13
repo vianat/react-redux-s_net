@@ -1,7 +1,11 @@
 import React from 'react';
 import css from './ProfileInfo.module.css'
+import {profileStateType} from "../../../redux/profile-reducer";
 
-const ProfileInfo = () => {
+type ProfileInfoPropstype = {
+    profile: profileStateType
+}
+const ProfileInfo = (props: ProfileInfoPropstype) => {
     return (
         <div>
             <div>

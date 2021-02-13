@@ -1,8 +1,21 @@
-import {dialogType, messegeType} from "./store";
 
 const ADD_MESSEGE = "ADD-MESSEGE";
 const UPDATE_MESSEGE_TEXT = "UPDATE-MESSEGE-TEXT";
 const REMOVE_LAST_MESSEGE = "REMOVE-LAST-MESSEGE";
+
+export type dialogsStateType = {
+    dialogs: Array<dialogType>,
+    messeges: Array<messegeType>,
+    newMessegeText: string
+}
+export type dialogType = {
+    id: number,
+    name: string
+}
+export type messegeType = {
+    id: number,
+    text: string
+}
 
 let initialState = {
     dialogs: [
@@ -19,11 +32,6 @@ let initialState = {
         {id: 4, text: "Nice !!!"}
     ],
     newMessegeText: ""
-}
-type dialogsStateType = {
-    dialogs: Array<dialogType>,
-    messeges: Array<messegeType>,
-    newMessegeText: string
 }
 
 const dialogsReducer = (state:dialogsStateType = initialState, action: any) => {
@@ -52,8 +60,8 @@ const dialogsReducer = (state:dialogsStateType = initialState, action: any) => {
             stateCopy.messeges.pop();
             return stateCopy;
         }
-        default :
-            return state;
+
+        default : return state;
     }
 }
 

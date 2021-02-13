@@ -10,16 +10,17 @@ import React from "react";
 import axios from "axios";
 import Users from "./Users";
 import Preloader from "../other/Preloader/Preloader"
+import {stateAllType} from "../../redux/redux-store";
 
 interface State {
 }  // костыль со стекеОвер, типа типизации пропсов
-interface PropsType {   // костыль со стекеОвер, типа типизации пропсов
+type UsersContainerPropsType ={   // костыль со стекеОвер, типа типизации пропсов
     users: Array<userType>
-    pageSize: number,
-    totalUsersCount: number,
-    currentPage: number,
-    isFetching: boolean,
-    follow: (userID: number) => void,
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+    follow: (userID: number) => void
     unfollow: (userID: number) => void
     setUsers: (users: Array<userType>) => void
     setCurrentPage: (currentPage: number) => void
@@ -27,7 +28,7 @@ interface PropsType {   // костыль со стекеОвер, типа ти
     setToggleIsFetching: (isFetching: boolean) => void
 }
 
-class UsersContainer extends React.Component<PropsType, State> {
+class UsersContainer extends React.Component<UsersContainerPropsType, State> {
 
     // constructor(props: PropsType) { super(props)} // если конструктор только кидает пропсы родителю, он не обязателен
 
@@ -48,7 +49,8 @@ class UsersContainer extends React.Component<PropsType, State> {
             .then(response => {
                 this.props.setToggleIsFetching(false);
                 this.props.setUsers(response.data.items)
-            })
+            }
+        )
     }
 
     render() {
@@ -66,7 +68,7 @@ class UsersContainer extends React.Component<PropsType, State> {
     }
 }
 
-let mapStateToProps = (state: any) => {
+let mapStateToProps = (state: stateAllType) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -88,4 +90,3 @@ let mapStateToProps = (state: any) => {
 // }
 
 export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setToggleIsFetching})(UsersContainer)
-
