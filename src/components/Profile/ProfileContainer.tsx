@@ -4,21 +4,19 @@ import axios from "axios";
 import {connect} from "react-redux";
 import {profileStateType, setUserProfile} from "../../redux/profile-reducer";
 import {stateAllType} from "../../redux/redux-store";
+import { withRouter } from 'react-router-dom';
 
-interface State {
-}  // костыль со стекеОвер, типа типизации пропсов
 type ProfileContainerPropsType = {   // костыль со стекеОвер, типа типизации пропсов
-
     profile: profileStateType
-
     // addNewPostActionCreator: () => void
     // updatePostTextActionCreator:(newText: string | undefined) => void
     // removeLastPostActionCreator:() => void
     setUserProfile: any
 }
-class ProfileContainer extends React.Component<ProfileContainerPropsType, State> {
+class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
     componentDidMount() {
+        debugger
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
             .then(response => {
                 debugger
@@ -34,5 +32,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType, State>
 };
 
 let mapStateToProps = (state: stateAllType) => ( { profile: state.profilePage.profile} )
+
+// let WithURLDataContainerComponent = withRouter(ProfileContainer)
 
 export default connect(mapStateToProps, {setUserProfile})(ProfileContainer);
