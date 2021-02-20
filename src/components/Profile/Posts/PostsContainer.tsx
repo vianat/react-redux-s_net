@@ -1,4 +1,4 @@
-import {addNewPostActionCreator, removeLastPostActionCreator, updatePostTextActionCreator } from '../../../redux/profile-reducer';
+import {addNewPost,changePost,removePost} from '../../../redux/profile-reducer';
 import Posts from "./Posts";
 import { connect } from 'react-redux'
 
@@ -35,19 +35,8 @@ import { connect } from 'react-redux'
 //     )
 // }
 
-let mapStateToProps = (state: any) => {
-    return {
-        state: state.profilePage
-    }
-}
-let mapDispatchToProps = (dispatch: any) => {
-    return {
-        addNewPost: () => {dispatch(addNewPostActionCreator())},
-        changePost: (newText: string | undefined) => {dispatch(updatePostTextActionCreator(newText))},
-        removePost: () => {dispatch(removeLastPostActionCreator())}
-    }
-}
+let mapStateToProps = (state: any) => ({state: state.profilePage})
 
-let PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts)
+let PostsContainer = connect(mapStateToProps, {addNewPost, changePost, removePost})(Posts)
 
 export default PostsContainer;

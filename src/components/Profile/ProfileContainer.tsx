@@ -6,20 +6,17 @@ import {profileStateType, setUserProfile} from "../../redux/profile-reducer";
 import {stateAllType} from "../../redux/redux-store";
 import { withRouter } from 'react-router-dom';
 
-type ProfileContainerPropsType = {   // костыль со стекеОвер, типа типизации пропсов
-    profile: profileStateType
-    // addNewPostActionCreator: () => void
-    // updatePostTextActionCreator:(newText: string | undefined) => void
-    // removeLastPostActionCreator:() => void
-    setUserProfile: any
+type ProfileContainerPropsType = {
+    profile: profileStateType   // получает из mapStateToProps
+    setUserProfile: any         // получает из mapDispatchToProps (из connect)
 }
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
     componentDidMount() {
-        debugger
+        // let userId =  this.props.match.param.userId
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
             .then(response => {
-                debugger
+
                 this.props.setUserProfile(response.data)
             })
     }
@@ -31,7 +28,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
     }
 };
 
-let mapStateToProps = (state: stateAllType) => ( { profile: state.profilePage.profile} )
+let mapStateToProps = (state: stateAllType) => ( { profile: state.profilePage.profile} ) // доступ к стейту даёт из connect-provider
 
 // let WithURLDataContainerComponent = withRouter(ProfileContainer)
 

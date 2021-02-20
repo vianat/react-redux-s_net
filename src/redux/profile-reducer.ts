@@ -75,9 +75,9 @@ const profileReducer = (state: any = initialState, action: any) => {
     }
 }
 
-export const addNewPostActionCreator = () => ({ type: ADD_POST})
-export const updatePostTextActionCreator = (newText: string | undefined) => ({type: UPDATE_POST_TEXT, text: newText})
-export const removeLastPostActionCreator = () => ({type: REMOVE_LAST_POST})
+export const addNewPost = () => ({ type: ADD_POST})
+export const changePost = (newText: string | undefined) => ({type: UPDATE_POST_TEXT, text: newText})
+export const removePost = () => ({type: REMOVE_LAST_POST})
 export const setUserProfile = (profile: string) => ({type: SET_USER_PROFILE, profile })
 
 export default profileReducer;
