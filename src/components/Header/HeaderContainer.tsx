@@ -5,21 +5,22 @@ import {connect} from "react-redux";
 import {stateAllType} from "../../redux/redux-store";
 import {setUserData} from "../../redux/auth-reducer";
 
-type HeaderContainerPropsType = {
-    userId: number
-    email: string
-    login: string
-    isFetching: boolean
-    setUserData: (userId: number, email: string, login: string) => void
-}
-
 let instanse = axios.create({
     withCredentials: true,
     baseURL: "https://social-network.samuraijs.com/api/1.0/",
-    headers: {"API-KEY": "d44a3fa4-9ee7-4a5f-b187-297bbdd88a59"}
+    headers: {"API-KEY": "c062bc67-53d6-4d4c-a2dc-1d65e21a089d"}
 })
 
-class HeaderContainer extends React.Component<HeaderContainerPropsType, {}>{
+type MapStateToPropsType = {
+    isAuth: boolean | null
+    login: string | null
+}
+type MapDispatchToPropsType = {
+    setUserData: (userId: number, email: string, login: string) => void
+}
+type PropsType = MapStateToPropsType & MapDispatchToPropsType
+
+class HeaderContainer extends React.Component<PropsType, {}>{
 
     componentDidMount() {
         instanse.get(`auth/me`)
@@ -27,17 +28,17 @@ class HeaderContainer extends React.Component<HeaderContainerPropsType, {}>{
                 if (response.data.resultCode === 0){
                     let {id, email, login} = response.data.data
                     debugger
-                    this.props.setUserData(id, email, login)   // не видит АС
-
+                    this.props.setUserData(id, email, login)
                 }})
     }
-
     render() {
-        return <Header/>
-        // return <Header props={this.props}/>
+        return <Header {...this.props} />
     }
-
 };
 
-const mapStateToProps = (state: stateAllType) => ({}) // доступ к стейту даёт connect-provider
-export default connect(mapStateToProps, {setUserData})(HeaderContainer)
+const mapStateToProps = (state: stateAllType) => ({
+    isAuth: state.auth.isAuth,
+    login: state.auth.login
+})
+
+export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, stateAllType>(mapStateToProps, {setUserData})(HeaderContainer)

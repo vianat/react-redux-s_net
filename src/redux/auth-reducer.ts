@@ -4,14 +4,14 @@ type authStateType = {
     userId: number,
     email: string,
     login: string,
-    isFetching: boolean
+    isAuth: boolean
 }
 
 let initialState = {
     userId: 0,
     email: "null",
     login: "null",
-    isFetching: false
+    isAuth: false
 }
 
 const authReducer = (state: authStateType = initialState, action: any) => {

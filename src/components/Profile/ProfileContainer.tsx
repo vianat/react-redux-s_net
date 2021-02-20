@@ -4,7 +4,6 @@ import axios from "axios";
 import {connect} from "react-redux";
 import {profileStateType, setUserProfile} from "../../redux/profile-reducer";
 import {stateAllType} from "../../redux/redux-store";
-import { withRouter } from 'react-router-dom';
 
 type ProfileContainerPropsType = {
     profile: profileStateType   // получает из mapStateToProps

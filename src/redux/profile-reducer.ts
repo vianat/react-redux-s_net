@@ -48,7 +48,7 @@ let initialState = {
 const profileReducer = (state: any = initialState, action: any) => {
 
     let stateCopy; // работаем с копией стейта обязательно
-
+    debugger
     switch (action.type) {
         case ADD_POST:
             let addPost = {
