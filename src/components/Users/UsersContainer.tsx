@@ -12,8 +12,6 @@ import Users from "./Users";
 import Preloader from "../other/Preloader/Preloader"
 import {stateAllType} from "../../redux/redux-store";
 
-interface State {
-}  // костыль со стекеОвер, типа типизации пропсов
 type UsersContainerPropsType ={   // костыль со стекеОвер, типа типизации пропсов
     users: Array<userType>
     pageSize: number
@@ -28,18 +26,21 @@ type UsersContainerPropsType ={   // костыль со стекеОвер, т�
     setToggleIsFetching: (isFetching: boolean) => void
 }
 
-class UsersContainer extends React.Component<UsersContainerPropsType, State> {
+class UsersContainer extends React.Component<UsersContainerPropsType> {
 
     // constructor(props: PropsType) { super(props)} // если конструктор только кидает пропсы родителю, он не обязателен
 
     componentDidMount() {
         this.props.setToggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
+                withCredentials: true,
+                headers: {"API-KEY": "c062bc67-53d6-4d4c-a2dc-1d65e21a089d"}
+            })
             .then(response => {
                 this.props.setToggleIsFetching(false);
                 this.props.setUsers(response.data.items)
                 this.props.setTotalUsersCount(response.data.totalCount)
-            })
+            });
     }
 
     onPageChanger = (pageNumber: number) => {
