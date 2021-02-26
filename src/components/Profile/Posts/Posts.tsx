@@ -33,7 +33,8 @@ const Posts = (props: propsPostsType) => {
             <div>
                 <textarea
                     placeholder={"Enter your post"}
-                    ref={newPost} onChange={editPost}
+                    ref={newPost}
+                    onChange={editPost}
                     value={props.state.newPostText}/>
                 <button onClick={addPost}>Add new post</button>
                 <button onClick={() => {deletePost()}}>Delete post</button>

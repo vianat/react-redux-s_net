@@ -1,15 +1,9 @@
 import React from "react";
 import Header from "./Header";
-import axios from "axios";
 import {connect} from "react-redux";
 import {stateAllType} from "../../redux/redux-store";
 import {setUserData} from "../../redux/auth-reducer";
-
-let instanse = axios.create({
-    withCredentials: true,
-    baseURL: "https://social-network.samuraijs.com/api/1.0/",
-    headers: {"API-KEY": "c062bc67-53d6-4d4c-a2dc-1d65e21a089d"}
-})
+import {usersAPI} from "../../api/api";
 
 type MapStateToPropsType = {
     isAuth: boolean | null
@@ -23,10 +17,9 @@ type PropsType = MapStateToPropsType & MapDispatchToPropsType
 class HeaderContainer extends React.Component<PropsType, {}>{
 
     componentDidMount() {
-        instanse.get(`auth/me`)
-            .then(response => {
-                if (response.data.resultCode === 0){
-                    let {id, email, login} = response.data.data
+        usersAPI.authMe().then(data => {
+                if (data.resultCode === 0){
+                    let {id, email, login} = data.data
                     this.props.setUserData(id, email, login)
                 }})
     }
