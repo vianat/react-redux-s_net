@@ -10,9 +10,12 @@ type propsUsersType = {
     totalUsersCount: number
     pageSize: number
     currentPage: number
+    followingInProgress: Array<number>
+
     follow: (userID: number) => void,
     unfollow: (userID: number) => void
     onPageChanger: (page: number)=> void
+    toggleFollowingProgress: (isFetching: boolean, userId: number) => void
 }
 
 const Users = (props: propsUsersType) => {
@@ -46,17 +49,28 @@ const Users = (props: propsUsersType) => {
                         </div>
                         <div>
                             {u.followed
-                                ? <button onClick={ () => {
-                                    usersAPI.delete(u.id).then(data => {
-                                            if(data.resultCode === 0) {props.unfollow(u.id)}
-                                        });
+                                ? <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                          onClick={ () => {
+                                                props.toggleFollowingProgress(true, u.id)
+                                                usersAPI.delete(u.id)
+                                                    .then(data => {
+                                                        if(data.resultCode === 0) {
+                                                            props.unfollow(u.id)
+                                                        }
+                                                        props.toggleFollowingProgress(false, u.id)
+                                                    });
                                 }}>Unfollow</button>
 
-                                : <button onClick={ () => {
-                                    usersAPI.post(u.id)         //было с доп объектом -> usersAPI.post(u.id, {})
-                                        .then(data => {
-                                            if(data.resultCode === 0) {props.follow(u.id)}
-                                        });
+                                : <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                          onClick={ () => {
+                                                props.toggleFollowingProgress(true, u.id)
+                                                usersAPI.post(u.id)         //было с доп объектом -> usersAPI.post(u.id, {})
+                                                    .then(data => {
+                                                        if(data.resultCode === 0) {
+                                                            props.follow(u.id)
+                                                        }
+                                                        props.toggleFollowingProgress(false, u.id)
+                                                    });
                                 }}> follow</button>}
                         </div>
                     </span>
