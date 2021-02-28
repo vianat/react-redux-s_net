@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 const ADD_POST = "ADD-POST";
 const UPDATE_POST_TEXT = "UPDATE-POST_TEXT";
 const REMOVE_LAST_POST = "REMOVE-LAST-POST";
@@ -78,5 +80,13 @@ export const addNewPost = () => ({ type: ADD_POST})
 export const changePost = (newText: string | undefined) => ({type: UPDATE_POST_TEXT, text: newText})
 export const removePost = () => ({type: REMOVE_LAST_POST})
 export const setUserProfile = (profile: string) => ({type: SET_USER_PROFILE, profile })
+
+export const getProfile = () => {
+    return (dispatch: any) => {
+        usersAPI.getProfile().then(data => {
+            setUserProfile(data)
+        })
+    }
+}
 
 export default profileReducer;

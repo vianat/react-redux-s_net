@@ -22,11 +22,11 @@ export const usersAPI = {
             .then(response => response.data);
     },
 
-    delete(userID = 55) {
+    unfollow(userID = 55) {
         return instanse.delete(`follow/${userID}`).then(response => response.data);
     },
 
-    post(userID: any) {
+    follow(userID: any) {
         return instanse.post(`follow/${userID}`).then(response => response.data);
     },
 
