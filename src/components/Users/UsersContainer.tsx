@@ -9,9 +9,11 @@ import React from "react";
 import Users from "./Users";
 import Preloader from "../other/Preloader/Preloader"
 import {stateAllType} from "../../redux/redux-store";
+import {Redirect} from "react-router-dom";
 
 type UsersContainerPropsType ={   // костыль со стекеОвер, типа типизации пропсов
     users: Array<userType>
+    isAuth: boolean
     pageSize: number
     totalUsersCount: number
     currentPage: number
@@ -42,6 +44,8 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     }
 
     render() {
+        if (this.props.isAuth) return <Redirect to={"/login"}/>
+
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users
@@ -62,6 +66,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
 let mapStateToProps = (state: stateAllType) => {
     return {
         users: state.usersPage.users,
+        isAuth: state.auth.isAuth,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,

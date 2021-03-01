@@ -28,5 +28,5 @@ const mapStateToProps = (state: stateAllType) => ({
     login: state.auth.login
 })
 
-export default connect<MapStateToPropsType, MapDispatchToPropsType, {},
-    stateAllType>(mapStateToProps, {authenticationMe})(HeaderContainer)
+export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, stateAllType>
+            (mapStateToProps, {authenticationMe})(HeaderContainer)

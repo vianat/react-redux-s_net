@@ -1,6 +1,7 @@
 import {addMessege,changeMessege,removeMessege} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import { connect } from 'react-redux'
+import {stateAllType} from "../../redux/redux-store";
 
 // type dialogsPropsType = {
 //     store: {
@@ -35,11 +36,10 @@ import { connect } from 'react-redux'
 //     )
 // }
 
-let mapStateToProps = (state: any) => {
-    return {
-    state: state.dialogsPage
-    }
-}
+let mapStateToProps = (state: stateAllType) => ({
+    ...state.dialogsPage,
+    isAuth: state.auth.isAuth
+})
 
 let DialogsContainer = connect(mapStateToProps, {addMessege, changeMessege, removeMessege})(Dialogs)
 

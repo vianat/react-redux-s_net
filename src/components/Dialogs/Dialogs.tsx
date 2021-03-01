@@ -3,13 +3,14 @@ import css from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import Messege from './Messege/Messege';
 import {dialogType, messegeType} from "../../redux/dialogs-reducer";
+import { Redirect } from 'react-router-dom';
 
 type dialogsPropsType = {
-    state:{
-        dialogs: Array<dialogType>,
-        messeges: Array<messegeType>,
-        newMessegeText: string
-    },
+    dialogs: Array<dialogType>
+    messeges: Array<messegeType>
+    newMessegeText: string
+    isAuth: boolean
+
     addMessege: () => void,
     changeMessege: (newText: string | undefined) => void,
     removeMessege: () => void;
@@ -17,8 +18,8 @@ type dialogsPropsType = {
 
 const Dialogs = (props: dialogsPropsType) => {
 
-    let dialogsElements = props.state.dialogs.map((el)=> <DialogItem name={el.name} id={el.id} key={el.id}/>)
-    let messegesElements = props.state.messeges.map(el => <Messege text={el.text} key={el.id}/>)
+    let dialogsElements = props.dialogs.map((el)=> <DialogItem name={el.name} id={el.id} key={el.id}/>)
+    let messegesElements = props.messeges.map(el => <Messege text={el.text} key={el.id}/>)
 
     let newMessege = React.createRef<HTMLTextAreaElement>();
 
@@ -28,6 +29,8 @@ const Dialogs = (props: dialogsPropsType) => {
         props.changeMessege(newText);
     }
     let deleteMessege = () =>  props.removeMessege()
+
+    if (props.isAuth) return <Redirect to={"/login"}/>
 
     return (
         <div className={css.dialogs}>
@@ -39,7 +42,7 @@ const Dialogs = (props: dialogsPropsType) => {
             <div className={css.messege}>
                 {messegesElements}
 
-                <textarea placeholder={"Enter your messege"} ref={newMessege} onChange={editMessege} value={props.state.newMessegeText}/>
+                <textarea placeholder={"Enter your messege"} ref={newMessege} onChange={editMessege} value={props.newMessegeText}/>
                 <button onClick={addNewMessege}>Write new messege</button>
                 <button onClick={()=>{deleteMessege()}}>Delete messege</button>
             </div>
