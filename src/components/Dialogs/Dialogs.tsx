@@ -3,7 +3,6 @@ import css from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import Messege from './Messege/Messege';
 import {dialogType, messegeType} from "../../redux/dialogs-reducer";
-import { Redirect } from 'react-router-dom';
 
 type dialogsPropsType = {
     dialogs: Array<dialogType>
@@ -29,8 +28,6 @@ const Dialogs = (props: dialogsPropsType) => {
         props.changeMessege(newText);
     }
     let deleteMessege = () =>  props.removeMessege()
-
-    if (props.isAuth) return <Redirect to={"/login"}/>
 
     return (
         <div className={css.dialogs}>

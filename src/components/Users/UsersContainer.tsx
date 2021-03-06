@@ -44,8 +44,6 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     }
 
     render() {
-        if (this.props.isAuth) return <Redirect to={"/login"}/>
-
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users
@@ -63,6 +61,28 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     }
 }
 
+type AuthRedirectComponentPropsType = {
+    users: Array<userType>
+    isAuth: boolean
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+    followingInProgress: Array<number>
+
+    follow: (userID: number) => void
+    unfollow: (userID: number) => void
+    setUsers: (users: Array<userType>) => void
+    setCurrentPage: (currentPage: number) => void
+    setToggleIsFetching: (isFetching: boolean) => void
+    toggleFollowingProgress: (isFetching: boolean, userId: number) => void
+    getUsers: (currentPage: number, pageSize: number) => void
+}
+const AuthRedirectComponent = (props: AuthRedirectComponentPropsType) => {
+    if (props.isAuth) return <Redirect to="/login"/>
+    return <UsersContainer {...props}/>
+}
+
 let mapStateToProps = (state: stateAllType) => {
     return {
         users: state.usersPage.users,
@@ -78,4 +98,4 @@ let mapStateToProps = (state: stateAllType) => {
 export default connect(mapStateToProps, {
     follow, unfollow, setUsers, setCurrentPage,
     setToggleIsFetching, toggleFollowingProgress, getUsers
-})(UsersContainer)
+})(AuthRedirectComponent)
