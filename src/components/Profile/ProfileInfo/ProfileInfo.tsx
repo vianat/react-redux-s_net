@@ -5,6 +5,8 @@ import ProfileStatus from "./ProfileStatus"
 
 type ProfileInfoPropstype = {
     profile: profileStateType
+    status: string
+    updateStatus: (status: string) => void
 }
 const ProfileInfo = (props: ProfileInfoPropstype) => {
     return (
@@ -17,8 +19,8 @@ const ProfileInfo = (props: ProfileInfoPropstype) => {
                     <img className={css.profile_img} alt = "account" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvnOlK_OzBO7JLvLRvLSehkddYklToA9eWpNv7-R_y9CRHrh6rCFsrRq7zZCqZDY1LZaifPuffzDo&usqp=CAc"/>
                 </div>
 
-
-                <ProfileStatus status="STATUS"/>
+                <ProfileStatus status={props.status}
+                               updateStatus={props.updateStatus}/>
             </div>
 
         </div>

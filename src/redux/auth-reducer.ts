@@ -1,4 +1,4 @@
-import {usersAPI} from "../api/api";
+import {usersAPI} from "../api/usersAPI";
 
 const SET_USER_DATA = "SET_USER_DATA"
 

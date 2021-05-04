@@ -1,10 +1,5 @@
-import axios from "axios";
-
-export const instanse = axios.create({
-    withCredentials: true,
-    baseURL: "https://social-network.samuraijs.com/api/1.0/",
-    headers: {"API-KEY": "9023ef56-e618-4743-b1d7-425c6976d211"}
-})
+import {instanse} from "./instanse";
+import {profileAPI} from "./profileAPI";
 
 export const usersAPI = {
     getUsers (currentPage=1, pageSize = 100) {
@@ -17,9 +12,8 @@ export const usersAPI = {
             .then(response => response.data);
     },
 
-    getProfile () {                         // id хард, нужно будет получать
-        return instanse.get(`profile/2`)
-            .then(response => response.data);
+    getProfile () {
+        return profileAPI.getProfile();
     },
 
     unfollow(userID = 55) {
@@ -31,4 +25,3 @@ export const usersAPI = {
     },
 
 }
-
