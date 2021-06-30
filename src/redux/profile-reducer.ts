@@ -41,13 +41,13 @@ export type postType = {
 
 let initialState = {
     posts: [
-        {id: 1, text: "first post", likesCount: 0},
-        {id: 2, text: "tik-tok dno", likesCount: 177},
-        {id: 3, text: "мамкин программист", likesCount: 62}
+        {id: 1, text: "post 1", likesCount: 1},
+        {id: 2, text: "post 2", likesCount: 22},
+        {id: 3, text: "post 3", likesCount: 333}
     ],
     newPostText: "",
     profile: null,
-    status: "default status",
+    status: "default status text",
 }
 
 const profileReducer = (state: any = initialState, action: any) => {

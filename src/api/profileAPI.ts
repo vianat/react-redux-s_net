@@ -1,12 +1,12 @@
 import {instanse} from "./instanse";
 
 export const profileAPI = {
-    getProfile() {                                  //userId: number id захардкожен =(
+    getProfile() {                                  //userId: number id hardcode! =(
         return instanse.get(`profile/status/15083`)
             .then(response => response.data);
     },
 
-    getUserStatus() {                               //userId: number id захардкожен =(
+    getUserStatus() {                               //userId: number id hardcode! =(
         return instanse.get(`profile/status/15083`)
             .then(response => response.data);
     },
