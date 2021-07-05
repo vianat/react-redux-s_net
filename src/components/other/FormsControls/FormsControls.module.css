@@ -1,0 +1,9 @@
+import React from "react";
+import {object} from "prop-types";
+
+export const Textarea = ({input= object, meta=object, ...props}) => {
+
+    return (
+            <textarea {...input} {...props}/>
+    )
+}
