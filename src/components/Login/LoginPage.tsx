@@ -1,16 +1,26 @@
 import React from 'react';
 import {reduxForm, Field} from 'redux-form';
+import {Input} from "../other/FormsControls/FormsControls";
+import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
+import {connect} from "react-redux";
+import {login, logout} from "../../redux/auth-reducer";
+import {Redirect} from "react-router-dom";
+import {stateAllType} from "../../redux/redux-store";
 
+const maxLength100 = maxLengthCreator(100)
 const LoginForm = (props: any) => {
     return <form onSubmit={props.handleSubmit}>
         <div>
-            <Field placeholder="login" component="input" type="login" name={"login"} />
+            <Field placeholder="email"
+                   component={Input}
+                   validate={[requiredField, maxLength100]}
+                   type="login" name="email" />
         </div>
         <div>
-            <Field placeholder="password" component="input" name={"password"}/>
+            <Field placeholder="password" component={Input} name="password" type="password"/>
         </div>
         <div>
-            <Field placeholder="checkbox" component="input" type="checkbox" name={"rememberMe"} /> remember me
+            <Field placeholder="checkbox" component={Input} type="checkbox" name="rememberMe" /> remember me
         </div>
         <div>
             <button>Login</button>
@@ -18,20 +28,27 @@ const LoginForm = (props: any) => {
     </form>
 };
 
-const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
+const LoginReduxFormHOC = reduxForm({form: 'login'})(LoginForm)
 
-
-const LoginPage = () => {
+const LoginPage = (props: any) => {
+    debugger
     const onSubmit = (formData: any) => {
         console.log(formData)
+        props.login(formData.email, formData.password, formData.rememberMe)
+    }
+
+    if(props.auth) {
+        return <Redirect to={"/profile"} />
     }
 
     return (
         <div>
             <h1>login</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginReduxFormHOC onSubmit={onSubmit}/>
         </div>
     );
 };
-
-export default LoginPage;
+const mapStateToProps = (state: stateAllType) => ({
+    auth: state.auth.isAuth
+})
+export default connect(mapStateToProps, {login, logout}) (LoginPage);

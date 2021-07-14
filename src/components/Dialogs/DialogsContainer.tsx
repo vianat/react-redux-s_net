@@ -1,4 +1,4 @@
-import {addMessege, changeMessege, dialogType, messegeType, removeMessege} from "../../redux/dialogs-reducer";
+import {addMessege, dialogType, messegeType, removeMessege} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import { connect } from 'react-redux'
 import {stateAllType} from "../../redux/redux-store";
@@ -46,11 +46,9 @@ let mapStateToProps = (state: stateAllType) => ({
 type AuthRedirectComponentPropsType = {
     dialogs: Array<dialogType>
     messeges: Array<messegeType>
-    newMessegeText: string
     isAuth: boolean
 
-    addMessege: () => void,
-    changeMessege: (newText: string | undefined) => void,
+    addMessege: (newMessegeBody: string) => void,
     removeMessege: () => void;
 }
 const AuthRedirectComponent = (props: AuthRedirectComponentPropsType) => {
@@ -58,6 +56,6 @@ const AuthRedirectComponent = (props: AuthRedirectComponentPropsType) => {
     return <Dialogs {...props}/>
 }
 
-let DialogsContainer = connect(mapStateToProps, {addMessege, changeMessege, removeMessege})(AuthRedirectComponent)
+let DialogsContainer = connect(mapStateToProps, {addMessege, removeMessege})(AuthRedirectComponent)
 
 export default DialogsContainer;

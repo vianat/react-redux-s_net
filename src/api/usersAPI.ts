@@ -2,17 +2,26 @@ import {instanse} from "./instanse";
 import {profileAPI} from "./profileAPI";
 
 export const usersAPI = {
-    getUsers (currentPage=1, pageSize = 100) {
+    getUsers(currentPage=1, pageSize = 100) {
         return instanse.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => response.data);
     },
 
-    authMe () {
+    authMe() {
         return instanse.get(`auth/me`)
             .then(response => response.data);
     },
 
-    getProfile () {
+    login(email: string, password: string, rememberMe = false, captcha: boolean) {
+        return instanse.post(`auth/login`, {email, password, rememberMe, captcha})
+            .then(response => response.data);
+    },
+    logout() {
+        return instanse.delete(`auth/login`)
+            .then(response => response.data);
+    },
+
+    getProfile() {
         return profileAPI.getProfile();
     },
 
@@ -25,3 +34,4 @@ export const usersAPI = {
     },
 
 }
+export default usersAPI

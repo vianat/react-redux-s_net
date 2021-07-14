@@ -40,11 +40,12 @@ type AuthRedirectComponentPropsType = {
     updateStatus: (status: string) => void
 }
 const AuthRedirectComponent = (props: AuthRedirectComponentPropsType) => {
-        if (props.isAuth) return <Redirect to="/login"/>
+        // debugger
+        if (!props.isAuth) return <Redirect to="/login"/>
         return <ProfileContainer {...props}/>
 }
 
-let mapStateToProps = (state: stateAllType) => ( {
+const mapStateToProps = (state: stateAllType) => ( {
     profile: state.profilePage.profile,
     isAuth: state.auth.isAuth,
     status: state.profilePage.status

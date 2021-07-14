@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import {connect} from "react-redux";
 import {stateAllType} from "../../redux/redux-store";
-import {authenticationMe} from "../../redux/auth-reducer";
+import {authenticationMe, logout} from "../../redux/auth-reducer";
 
 type MapStateToPropsType = {
     isAuth: boolean | null
@@ -10,10 +10,11 @@ type MapStateToPropsType = {
 }
 type MapDispatchToPropsType = {
     authenticationMe: () => void
+    logout: () => void
 }
-type PropsType = MapStateToPropsType & MapDispatchToPropsType
+export type HeaderContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-class HeaderContainer extends React.Component<PropsType, {}>{
+class HeaderContainer extends React.Component<HeaderContainerPropsType, {}>{
 
     componentDidMount() {
         this.props.authenticationMe()
@@ -23,10 +24,10 @@ class HeaderContainer extends React.Component<PropsType, {}>{
     }
 }
 
-const mapStateToProps = (state: stateAllType) => ({
+const MSTP = (state: stateAllType) => ({
     isAuth: state.auth.isAuth,
-    login: state.auth.login
+    login: state.auth.login,
 })
 
 export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, stateAllType>
-            (mapStateToProps, {authenticationMe})(HeaderContainer)
+            (MSTP, {authenticationMe, logout})(HeaderContainer)

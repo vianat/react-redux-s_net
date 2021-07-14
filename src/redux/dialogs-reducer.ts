@@ -1,12 +1,9 @@
-
 const ADD_MESSEGE = "ADD-MESSEGE";
-const UPDATE_MESSEGE_TEXT = "UPDATE-MESSEGE-TEXT";
 const REMOVE_LAST_MESSEGE = "REMOVE-LAST-MESSEGE";
 
 export type dialogsStateType = {
     dialogs: Array<dialogType>,
     messeges: Array<messegeType>,
-    newMessegeText: string
 }
 export type dialogType = {
     id: number,
@@ -30,11 +27,10 @@ let initialState = {
         {id: 2, text: "What is going on here?"},
         {id: 3, text: "Is it react? really?"},
         {id: 4, text: "Nice !!!"}
-    ],
-    newMessegeText: ""
+    ]
 }
 
-const dialogsReducer = (state:dialogsStateType = initialState, action: any) => {
+const dialogsReducer = (state: dialogsStateType = initialState, action: any) => {
 
     let stateCopy; // работаем с копией стейта обязательно
 
@@ -42,17 +38,14 @@ const dialogsReducer = (state:dialogsStateType = initialState, action: any) => {
         case ADD_MESSEGE: {
             let addMessege = {
                 id: state.messeges[state.messeges.length - 1].id++,
-                text: state.newMessegeText
+                text: action.newMessegeBody
             }
-            stateCopy = {...state,
-                        messeges: [...state.messeges, addMessege], // копируем собщения + пушим новое
-                        newMessegeText: ""}                         // затираем ввод ввод после пуша
+            stateCopy = {
+                ...state,
+                messeges: [...state.messeges, addMessege]
+            } // копируем собщения + пушим новое
 
             return stateCopy;
-        }
-
-        case UPDATE_MESSEGE_TEXT: {
-            return {...state, newMessegeText: action.text};
         }
 
         case REMOVE_LAST_MESSEGE: {
@@ -61,12 +54,12 @@ const dialogsReducer = (state:dialogsStateType = initialState, action: any) => {
             return stateCopy;
         }
 
-        default : return state;
+        default :
+            return state;
     }
 }
 
-export const addMessege = () => ({type: ADD_MESSEGE})
-export const changeMessege = (newText: string | undefined) => ({type: UPDATE_MESSEGE_TEXT, text: newText})
-export const removeMessege = () => ({type:REMOVE_LAST_MESSEGE})
+export const addMessege = (newMessegeBody: string) => ({type: ADD_MESSEGE, newMessegeBody})
+export const removeMessege = () => ({type: REMOVE_LAST_MESSEGE})
 
 export default dialogsReducer;
