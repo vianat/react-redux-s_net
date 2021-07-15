@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {login, logout} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {stateAllType} from "../../redux/redux-store";
+import css from "./../other/FormsControls/FormsControls.module.css"
 
 const maxLength100 = maxLengthCreator(100)
 const LoginForm = (props: any) => {
@@ -22,6 +23,9 @@ const LoginForm = (props: any) => {
         <div>
             <Field placeholder="checkbox" component={Input} type="checkbox" name="rememberMe" /> remember me
         </div>
+        {props.error && <div className={css.formSummaryError}>
+            {props.error}
+        </div>}
         <div>
             <button>Login</button>
         </div>
@@ -31,7 +35,6 @@ const LoginForm = (props: any) => {
 const LoginReduxFormHOC = reduxForm({form: 'login'})(LoginForm)
 
 const LoginPage = (props: any) => {
-    debugger
     const onSubmit = (formData: any) => {
         console.log(formData)
         props.login(formData.email, formData.password, formData.rememberMe)
