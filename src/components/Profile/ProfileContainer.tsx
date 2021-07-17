@@ -59,6 +59,4 @@ const MSTP = (state: stateAllType) => ( {
     autorizedUserId: state.auth.userId,
 } ) // доступ к стейту даёт из connect-provider
 
-// let WithURLDataContainerComponent = withRouter(ProfileContainer)
-
 export default connect(MSTP, {getProfile, getUserStatus, updateStatus})(AuthRedirectComponent);
