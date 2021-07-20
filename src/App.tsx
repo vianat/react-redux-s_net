@@ -11,33 +11,40 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import LoginPage from "./components/Login/LoginPage";
 import {connect} from "react-redux";
-import store from "./redux/redux-store";
-import {authenticationMe, authStateType} from "./redux/auth-reducer";
+import store, {stateAllType} from "./redux/redux-store";
+import {authStateType} from "./redux/auth-reducer";
 import {profileType} from "./redux/profile-reducer";
 import {dialogType} from "./redux/dialogs-reducer";
 import {userType} from "./redux/users-reducer";
 import {compose} from "redux";
 import {Provider} from "react-redux";
 import {HashRouter} from "react-router-dom";
+import {initializeAppTC} from "./redux/app-reducer";
+import Preloader from "./components/other/Preloader/Preloader";
 
 type MSTPPropsType = {
     profilePage: profileType,
     dialogsPage: dialogType,
     usersPage: userType,
     auth: authStateType,
-    form: any
+    form: any,
+    initialized: boolean
 }
 type MDTPPropsType = {
-    authenticationMe: () => void,
+    initializeAppTC: () => void,
 }
 
 export type AppPropsType = MSTPPropsType & MDTPPropsType
 class App extends React.Component<AppPropsType, {}>{
     componentDidMount() {
-        this.props.authenticationMe()
+        this.props.initializeAppTC()
     }
 
     render() {
+        debugger
+        if(!this.props.initialized){
+            return <Preloader/>
+        }
 
         return (
             <BrowserRouter>
@@ -59,10 +66,13 @@ class App extends React.Component<AppPropsType, {}>{
         );
     }
 }
+const MSTP = (state: stateAllType) => ({
+    initialized: state.app.initialized
+})
 
 const AppContainer = compose<React.ComponentType>(
     withRouter,
-    connect(null, {authenticationMe}))(App)
+    connect(MSTP, {initializeAppTC}))(App)
 
 const SamuraiJSApp = (props: any) => {
     return <HashRouter>

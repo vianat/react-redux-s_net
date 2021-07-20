@@ -1,41 +1,38 @@
-import {usersAPI} from "../api/usersAPI";
-import {stopSubmit} from "redux-form";
+import {authenticationMe} from "./auth-reducer";
 
-const SET_INITIALIZED = "SET_INITIALIZED"
+const INITIALIZED_SUCCESS = "INITIALIZED_SUCCESS"
 
 let initialState = {
     initialized: false
 }
 
-const appReducer = (state = initialState , action: any) => {
+const appReducer = (state = initialState, action: any) => {
 
     switch (action.type) {
 
-        case SET_INITIALIZED:
+        case INITIALIZED_SUCCESS:
             return {
                 ...state,
                 initialized: true
             }
 
-        default : return state;
+        default :
+            return state;
     }
 }
 // ACTION creators
-export const setUserData = (
-    userId: any, email: any, login: any, isAuth: boolean
-) => ({ type: SET_USER_DATA, payload: {userId, email, login, isAuth}})
-
+export const initializedSuccess = () => ({type: INITIALIZED_SUCCESS})
 
 // THUNKS creators
-export const initializedAppTC = () => {
+export const initializeAppTC = () => {
     return (dispatch: any) => {
-        usersAPI.authMe().then(data => {
-            if (data.resultCode === 0){
-                let {id, email, login} = data.data
-                dispatch(setUserData(id, email, login, true))
-            }})
+        let promise = dispatch(authenticationMe());
+        debugger
+        Promise.all ([promise])  // собираем промисы в массив и если все зарезолвились диспатчим
+            .then(() => {
+                dispatch(initializedSuccess());
+        })
     }
 }
-
 
 export default appReducer;
