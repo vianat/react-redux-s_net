@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {Route, withRouter} from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
@@ -35,37 +35,36 @@ type MDTPPropsType = {
 }
 
 export type AppPropsType = MSTPPropsType & MDTPPropsType
-class App extends React.Component<AppPropsType, {}>{
+
+class App extends React.Component<AppPropsType, {}> {
     componentDidMount() {
         this.props.initializeAppTC()
     }
 
     render() {
-        debugger
-        if(!this.props.initialized){
+        if (!this.props.initialized) {
             return <Preloader/>
         }
 
         return (
-            <BrowserRouter>
-                <div className="app">
-                    <HeaderContainer/>
-                    <Navbar/>
-                    <div className="main_content">
-                        <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                        <Route path='/profile/:userid?' render={() => <ProfileContainer/>}/>
-                        <Route path='/users' render={() => <UsersContainer/>}/>
-                        <Route path='/login' render={() => <LoginPage/>}/>
+            <div className="app">
+                <HeaderContainer/>
+                <Navbar/>
+                <div className="main_content">
+                    <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                    <Route path='/profile/:userid?' render={() => <ProfileContainer/>}/>
+                    <Route path='/users' render={() => <UsersContainer/>}/>
+                    <Route path='/login' render={() => <LoginPage/>}/>
 
-                        <Route path='/news' component={News}/>
-                        <Route path='/music' component={Music}/>
-                        <Route path='/settings' component={Settings}/>
-                    </div>
+                    <Route path='/news' component={News}/>
+                    <Route path='/music' component={Music}/>
+                    <Route path='/settings' component={Settings}/>
                 </div>
-            </BrowserRouter>
+            </div>
         );
     }
 }
+
 const MSTP = (state: stateAllType) => ({
     initialized: state.app.initialized
 })

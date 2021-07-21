@@ -2,7 +2,6 @@ import {usersAPI} from "../api/usersAPI";
 import {stopSubmit} from "redux-form";
 import {Dispatch} from "react";
 
-
 const SET_USER_DATA = "SET_USER_DATA"
 
 export type authStateType = {
@@ -20,10 +19,11 @@ let initialState = {
 }
 
 const authReducer = (state: authStateType = initialState, action: any) => {
-
+        debugger
     switch (action.type) {
 
         case SET_USER_DATA:
+            debugger
             return {
                 ...state,
                 ...action.payload
@@ -35,19 +35,23 @@ const authReducer = (state: authStateType = initialState, action: any) => {
 }
 // ACTION creators
 export const setUserData = (
-    userId: any, email: any, login: any, isAuth: boolean) => (
-    {
+    userId: any, email: any, login: any, isAuth: boolean) => {
+    debugger
+    return {
         type: SET_USER_DATA, payload: {userId, email, login, isAuth}
     }
-)
+}
+
 
 // THUNKS creators
 export const authenticationMe = () => {
     return async (dispatch: Dispatch<any>) => {
+        debugger
         let response = await usersAPI.authMe()
-
-        if (response.data.resultCode === 0) {
-            let {id, login, email} = response.data.data
+        debugger
+        if (response.resultCode === 0) {
+            let {id, login, email} = response.data
+            debugger
             dispatch(setUserData(id, login, email, true))
         }
     }

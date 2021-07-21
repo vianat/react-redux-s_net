@@ -79,7 +79,7 @@ type AuthRedirectComponentPropsType = {
     getUsers: (currentPage: number, pageSize: number) => void
 }
 const AuthRedirectComponent = (props: AuthRedirectComponentPropsType) => {
-    if (props.isAuth) return <Redirect to="/login"/>
+    if (!props.isAuth) return <Redirect to="/login"/>
     return <UsersContainer {...props}/>
 }
 

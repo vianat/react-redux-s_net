@@ -52,7 +52,7 @@ type AuthRedirectComponentPropsType = {
     removeMessege: () => void;
 }
 const AuthRedirectComponent = (props: AuthRedirectComponentPropsType) => {
-    if (props.isAuth) return <Redirect to="/login"/>
+    if (!props.isAuth) return <Redirect to="/login"/>
     return <Dialogs {...props}/>
 }
 

@@ -27,7 +27,6 @@ export const initializedSuccess = () => ({type: INITIALIZED_SUCCESS})
 export const initializeAppTC = () => {
     return (dispatch: any) => {
         let promise = dispatch(authenticationMe());
-        debugger
         Promise.all ([promise])  // собираем промисы в массив и если все зарезолвились диспатчим
             .then(() => {
                 dispatch(initializedSuccess());
