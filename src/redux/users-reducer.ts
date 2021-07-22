@@ -93,7 +93,7 @@ export const setToggleIsFetching = (isFetching: boolean) => ({ type: TOGGLE_IS_F
 export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({ type: FOLLOWING_IN_PROGRESS, isFetching, userId})
 
 // THUNKS creators
-export const getUsers = (currentPage: number, pageSize: number) => {
+export const getUsersTC = (currentPage: number, pageSize: number) => {
     return (dispatch: any) => {
         dispatch(setToggleIsFetching(true));
 
@@ -105,7 +105,7 @@ export const getUsers = (currentPage: number, pageSize: number) => {
             });
     }
 }
-export const follow = (userId: number) => {
+export const followTC = (userId: number) => {
     return (dispatch: any) => {
         dispatch(toggleFollowingProgress(true, userId))
         usersAPI.follow(userId)
@@ -117,7 +117,7 @@ export const follow = (userId: number) => {
             });
     }
 }
-export const unfollow = (userId: number) => {
+export const unfollowTC = (userId: number) => {
     return (dispatch: any) => {
         dispatch(toggleFollowingProgress(true, userId))
         usersAPI.unfollow(userId)

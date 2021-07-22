@@ -39,7 +39,7 @@ const LoginPage = (props: any) => {
         console.log(formData)
         props.login(formData.email, formData.password, formData.rememberMe)
     }
-    debugger
+
     if(props.auth) {
         return <Redirect to={"/profile"} />
     }

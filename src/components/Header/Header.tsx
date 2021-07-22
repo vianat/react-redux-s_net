@@ -17,7 +17,6 @@ const Header = (props: HeaderContainerPropsType) => {
                         : <NavLink to="/login">Login</NavLink>
                     }
                 </div>
-
             </header>
 }
 

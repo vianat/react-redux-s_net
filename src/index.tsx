@@ -6,11 +6,11 @@ import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import SamuraiJSApp from "./App";
 
-    ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <SamuraiJSApp/>
-            </Provider>
-        </BrowserRouter>,
-        document.getElementById('root')
-    );
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}>
+            <SamuraiJSApp/>
+        </Provider>
+    </BrowserRouter>,
+    document.getElementById('root')
+);

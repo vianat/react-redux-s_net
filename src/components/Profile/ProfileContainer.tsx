@@ -19,7 +19,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
     componentDidMount() {
         console.log(this.props.autorizedUserId)
-debugger
+
         if(this.props.isAuth) {
             this.props.getProfile();
             this.props.getUserStatus();
