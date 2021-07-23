@@ -11,12 +11,11 @@ import Preloader from "../other/Preloader/Preloader"
 import {stateAllType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
 import {
-    getUsers,
     getCurrentPage,
     getFollowingInProgress, getIsAuth,
     getIsFetching,
     getPageSize,
-    getTotalUsersCount
+    getTotalUsersCount, getUsersRESelector
 } from "../../redux/users-selectors";
 
 type UsersContainerPropsType ={   // костыль со стекеОвер, типа типизации пропсов
@@ -104,7 +103,7 @@ const AuthRedirectComponent = (props: AuthRedirectComponentPropsType) => {
 // }
 let MSTP = (state: stateAllType) => {
     return {
-        users: getUsers(state),
+        users: getUsersRESelector(state),
         isAuth: getIsAuth(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
