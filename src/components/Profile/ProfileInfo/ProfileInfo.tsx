@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './ProfileInfo.module.css'
 import {profileStateType} from "../../../redux/profile-reducer";
-import ProfileStatus from "./ProfileStatus"
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 type ProfileInfoPropstype = {
     profile: profileStateType
@@ -19,7 +19,7 @@ const ProfileInfo = (props: ProfileInfoPropstype) => {
                     <img className={css.profile_img} alt = "account" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvnOlK_OzBO7JLvLRvLSehkddYklToA9eWpNv7-R_y9CRHrh6rCFsrRq7zZCqZDY1LZaifPuffzDo&usqp=CAc"/>
                 </div>
 
-                <ProfileStatus status={props.status}
+                <ProfileStatusWithHooks status={props.status}
                                updateStatus={props.updateStatus}/>
             </div>
 

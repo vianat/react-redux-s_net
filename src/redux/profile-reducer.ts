@@ -44,7 +44,7 @@ let initialState = {
         {id: 3, text: "post 3", likesCount: 333}
     ],
     profile: null,
-    status: "default status text",
+    status: "status",
 }
 
 const profileReducer = (state: any = initialState, action: any) => {
