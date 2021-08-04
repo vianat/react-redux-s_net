@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b2c1417-4e85-4179-8b38-627bbe5bf315" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileStatusWithHooks.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/profile-reducer.test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/Posts/Posts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/Posts/Posts.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileInfo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileStatus.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileStatus.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileStatusWithHooks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileStatusWithHooks.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/auth-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/auth-reducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/profile-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/profile-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/users-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/users-reducer.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,13 +56,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.last.introduce.type" value="CONST" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/Profile/ProfileInfo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/redux" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/react-scripts" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="C:\it-kamasutra\sn\node_modules\typescript\lib" />
@@ -67,8 +71,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\it-kamasutra\sn\src\components\Profile\ProfileInfo" />
       <recent name="C:\it-kamasutra\sn\src\redux" />
+      <recent name="C:\it-kamasutra\sn\src\components\Profile\ProfileInfo" />
       <recent name="C:\it-kamasutra\sn\src\components\other\FormsControls" />
       <recent name="C:\it-kamasutra\sn\src\components\Header" />
       <recent name="C:\it-kamasutra\sn\src\components\Users" />
@@ -81,11 +85,50 @@
       <recent name="D:\it-kamasutra\sn\src\components\Profile" />
     </key>
   </component>
-  <component name="RunManager" selected="Attach to Node.js/Chrome.chrome">
+  <component name="RunManager" selected="Jest.ADD-POST">
     <configuration name="chrome" type="ChromiumRemoteDebugType" factoryName="Chromium Remote" port="9229">
       <method v="2">
         <option name="LaunchBrowser.Before.Run" url="http://localhost:3000/" withDebugger="true" />
       </method>
+    </configuration>
+    <configuration name="ADD-POST" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/redux/profile-reducer.test.ts" />
+      <test-names>
+        <test-name value="ADD-POST" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Unnamed" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/redux/profile-reducer.test.ts" />
+      <test-names>
+        <test-name value="" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="renders learn react link" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/App.test.tsx" />
+      <test-names>
+        <test-name value="renders learn react link" />
+      </test-names>
+      <method v="2" />
     </configuration>
     <configuration name="chrome JavaScript" type="JavascriptDebugType" uri="http://localhost:3000/">
       <method v="2" />
@@ -93,7 +136,17 @@
     <list>
       <item itemvalue="Attach to Node.js/Chrome.chrome" />
       <item itemvalue="JavaScript Debug.chrome JavaScript" />
+      <item itemvalue="Jest.renders learn react link" />
+      <item itemvalue="Jest.Unnamed" />
+      <item itemvalue="Jest.ADD-POST" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.ADD-POST" />
+        <item itemvalue="Jest.Unnamed" />
+        <item itemvalue="Jest.renders learn react link" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -212,7 +265,10 @@
       <workItem from="1626887681708" duration="8009000" />
       <workItem from="1626981631256" duration="4929000" />
       <workItem from="1626998735743" duration="3902000" />
-      <workItem from="1627334843740" duration="7735000" />
+      <workItem from="1627334843740" duration="8694000" />
+      <workItem from="1627408742686" duration="5379000" />
+      <workItem from="1627519820448" duration="2850000" />
+      <workItem from="1628018240404" duration="4808000" />
     </task>
     <servers />
   </component>

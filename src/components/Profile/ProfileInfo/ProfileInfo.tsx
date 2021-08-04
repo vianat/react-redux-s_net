@@ -8,7 +8,7 @@ type ProfileInfoPropstype = {
     status: string
     updateStatus: (status: string) => void
 }
-const ProfileInfo = (props: ProfileInfoPropstype) => {
+const ProfileInfo = React.memo((props: ProfileInfoPropstype) => {
     return (
         <div>
             <div>
@@ -25,6 +25,6 @@ const ProfileInfo = (props: ProfileInfoPropstype) => {
 
         </div>
     )
-}
+})
 
 export default ProfileInfo;

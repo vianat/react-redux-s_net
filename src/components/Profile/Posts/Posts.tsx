@@ -16,9 +16,8 @@ type propsPostsType = {
 
 const maxLength10 = maxLengthCreator(10)
 
-const Posts = (props: propsPostsType) => {
+const Posts = React.memo((props: propsPostsType) => {
     let postElements = props.state.posts.map(p => <Post message={p.text} likes={p.likesCount}/>)
-
     let addPost = (values: any) => props.addNewPost(values.newPostText)
     // let deletePost = () => props.removePost()
 
@@ -34,7 +33,7 @@ const Posts = (props: propsPostsType) => {
             {postElements}
         </div>
     );
-};
+})
 
 const AddPostForm = (props: any) => {
     return <form onSubmit={props.handleSubmit}>

@@ -52,25 +52,25 @@ export const authenticationMe = () => {
     }
 }
 export const login = (email: string, password: string, rememberMe = false, captcha: boolean) => {
-    return (dispatch: any) => {
-        usersAPI.login(email, password, rememberMe, captcha).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(authenticationMe())
-            } else {
-                let messege = data.messages.length > 0 ? data.messages[0] : "Some error";
-                let action = stopSubmit('login', {_error: messege})
-                dispatch(action)
-            }
-        })
+    return async (dispatch: Dispatch<any>) => {
+        let response = await usersAPI.login(email, password, rememberMe, captcha)
+
+        if (response.resultCode === 0) {
+            dispatch(authenticationMe())
+        } else {
+            let messege = response.messages.length > 0 ? response.messages[0] : "Some error";
+            let action = stopSubmit('login', {_error: messege})
+            dispatch(action)
+        }
     }
 }
 export const logout = () => {
-    return (dispatch: any) => {
-        usersAPI.logout().then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setUserData(null, null, null, false))
-            }
-        })
+    return async (dispatch: Dispatch<any>) => {
+        let response = await usersAPI.logout()
+
+        if (response.resultCode === 0) {
+            dispatch(setUserData(null, null, null, false))
+        }
     }
 }
 
