@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b2c1417-4e85-4179-8b38-627bbe5bf315" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/redux/profile-reducer.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Users/User.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/other/Paginator/Paginator.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/other/Paginator/Paginator.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/helpers/objects-helper.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Profile/Posts/Posts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/Posts/Posts.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileInfo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileStatusWithHooks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileStatusWithHooks.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/auth-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/auth-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/profile-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/profile-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Users/Users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Users/Users.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Users/UsersContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Users/UsersContainer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/users-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/users-reducer.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +56,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.last.introduce.type" value="CONST" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/redux" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/Users" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -71,18 +71,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\it-kamasutra\sn\src\components\Users" />
+      <recent name="C:\it-kamasutra\sn\src\components\other\Paginator" />
       <recent name="C:\it-kamasutra\sn\src\redux" />
       <recent name="C:\it-kamasutra\sn\src\components\Profile\ProfileInfo" />
       <recent name="C:\it-kamasutra\sn\src\components\other\FormsControls" />
-      <recent name="C:\it-kamasutra\sn\src\components\Header" />
-      <recent name="C:\it-kamasutra\sn\src\components\Users" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\it-kamasutra\sn\src\components\other\Paginator" />
       <recent name="C:\it-kamasutra\sn\src\" />
       <recent name="C:\it-kamasutra\sn\src\components\Profile\ProfileInfo" />
       <recent name="D:\it-kamasutra\sn\src\components\Profile\Posts\Post" />
       <recent name="D:\it-kamasutra\sn\src\components\Profile\Posts" />
-      <recent name="D:\it-kamasutra\sn\src\components\Profile" />
     </key>
   </component>
   <component name="RunManager" selected="Jest.ADD-POST">
@@ -268,7 +268,8 @@
       <workItem from="1627334843740" duration="8694000" />
       <workItem from="1627408742686" duration="5379000" />
       <workItem from="1627519820448" duration="2850000" />
-      <workItem from="1628018240404" duration="4808000" />
+      <workItem from="1628018240404" duration="4838000" />
+      <workItem from="1628098646628" duration="8208000" />
     </task>
     <servers />
   </component>
