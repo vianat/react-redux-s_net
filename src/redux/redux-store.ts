@@ -20,7 +20,7 @@ export type stateAllType = ReturnType<typeof reducers>
 // v1 default redux store
 // let store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
-// v2 store for web extension with, it can be removed if you use v1
+// v2 store for web extension, use v1 or v2 only
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const store = createStore(reducers,  composeEnhancers(applyMiddleware(thunkMiddleware)));

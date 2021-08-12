@@ -32,6 +32,7 @@ const usersReducer = (state: usersStateType = initialState, action: any): usersS
             return stateCopy;
 
         case SET_USERS:
+            debugger
             return {...state, users: action.users}
 
         case SET_CURRENT_PAGE:
@@ -58,7 +59,7 @@ const usersReducer = (state: usersStateType = initialState, action: any): usersS
 // ACTION creators
 export const followSuccess = (userID: number) => ({type: FOLLOW, userID})
 export const unfollowSuccess = (userID: number) => ({type: UNFOLLOW, userID})
-export const setUsers = (users: any) => ({type: SET_USERS, users})
+export const setUsers = (users: Array<userType>) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalUsersCount = (totalUsersCount: number) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount})
 export const setToggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching})
@@ -72,7 +73,6 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
 export const getUsersTC = (currentPage: number, pageSize: number) => {
     return async (dispatch: DispatchType) => {
         dispatch(setToggleIsFetching(true));
-
         let data = await usersAPI.getUsers(currentPage, pageSize)
         dispatch(setToggleIsFetching(false));
         dispatch(setUsers(data.items))
@@ -106,7 +106,6 @@ export const followTC = (userId: number) => {
     }
 }
 export const unfollowTC = (userId: number) => {
-
     return async (dispatch: DispatchType) => {
         // refactor version
         // followUnfollowFlow(dispatch, userId, usersAPI.deleteUnfollow.bind(usersAPI),unfollowSuccess)
