@@ -33,24 +33,24 @@ type UsersContainerPropsType ={   // костыль со стекеОвер, т�
     setCurrentPage: (currentPage: number) => void
     setToggleIsFetching: (isFetching: boolean) => void
     toggleFollowingProgress: (isFetching: boolean, userId: number) => void
-    getUsersTC: (currentPage: number, pageSize: number) => void
 }
 
 class UsersContainer extends React.Component<UsersContainerPropsType> {
-
     // constructor(props: PropsType) { super(props)} // если конструктор только кидает пропсы родителю, он не обязателен
 
     componentDidMount() {
-        this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
+        debugger
+        getUsersTC(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanger = (pageNumber: number) => {
         this.props.setToggleIsFetching(true);
         this.props.setCurrentPage(pageNumber)
-        this.props.getUsersTC(pageNumber, this.props.pageSize)
+        getUsersTC(pageNumber, this.props.pageSize)
     }
 
     render() {
+        debugger
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users
@@ -83,7 +83,6 @@ type AuthRedirectComponentPropsType = {
     setCurrentPage: (currentPage: number) => void
     setToggleIsFetching: (isFetching: boolean) => void
     toggleFollowingProgress: (isFetching: boolean, userId: number) => void
-    getUsersTC: (currentPage: number, pageSize: number) => void
 }
 const AuthRedirectComponent = (props: AuthRedirectComponentPropsType) => {
     if (!props.isAuth) return <Redirect to="/login"/>
@@ -104,5 +103,5 @@ let MSTP = (state: stateAllType) => {
 
 export default connect(MSTP, {
     followTC, unfollowTC, setUsers, setCurrentPage,
-    setToggleIsFetching, toggleFollowingProgress, getUsersTC
+    setToggleIsFetching, toggleFollowingProgress
 })(AuthRedirectComponent)

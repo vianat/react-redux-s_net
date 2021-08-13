@@ -8,7 +8,6 @@ import {Route, withRouter} from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
 import LoginPage from "./components/Login/LoginPage";
 import {connect} from "react-redux";
 import store, {stateAllType} from "./redux/redux-store";
@@ -21,6 +20,7 @@ import {Provider} from "react-redux";
 import {HashRouter} from "react-router-dom";
 import {initializeAppTC} from "./redux/app-reducer";
 import Preloader from "./components/other/Preloader/Preloader";
+import {UsersContainerFunctional} from "./components/Users/UsersContainerFunctional";
 
 type MSTPPropsType = {
     profilePage: profileType,
@@ -53,7 +53,7 @@ class App extends React.Component<AppPropsType, {}> {
                 <div className="main_content">
                     <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                     <Route path='/profile/:userid?' render={() => <ProfileContainer/>}/>
-                    <Route path='/users' render={() => <UsersContainer/>}/>
+                    <Route path='/users' render={() => <UsersContainerFunctional/>}/>
                     <Route path='/login' render={() => <LoginPage/>}/>
 
                     <Route path='/news' component={News}/>
