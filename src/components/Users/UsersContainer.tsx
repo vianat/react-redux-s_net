@@ -26,6 +26,7 @@ type UsersContainerPropsType ={   // костыль со стекеОвер, т�
     currentPage: number
     isFetching: boolean
     followingInProgress: Array<number>
+    portionSize: number
 
     followTC: (userID: number) => void
     unfollowTC: (userID: number) => void
@@ -58,6 +59,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
                 currentPage={this.props.currentPage}
                 pageSize={this.props.pageSize}
                 totalUsersCount={this.props.totalUsersCount}
+                portionSize={this.props.portionSize}
 
                 follow={this.props.followTC}
                 unfollow={this.props.unfollowTC}
@@ -76,6 +78,7 @@ type AuthRedirectComponentPropsType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: Array<number>
+    portionSize: number
 
     followTC: (userID: number) => void
     unfollowTC: (userID: number) => void

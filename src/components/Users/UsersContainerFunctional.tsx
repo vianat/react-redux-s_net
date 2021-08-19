@@ -13,7 +13,7 @@ export const UsersContainerFunctional = () => {
 
     const selectStateUsersPage = (state:stateAllType) => state.usersPage
 
-    const { users, pageSize, currentPage, isFetching, followingInProgress, totalUsersCount}
+    const { users, pageSize, portionSize, currentPage, isFetching, followingInProgress, totalUsersCount}
     = useSelector(selectStateUsersPage )
 
     const dispatch = useDispatch<Dispatch<actionsTypes>>()
@@ -33,6 +33,7 @@ export const UsersContainerFunctional = () => {
                 currentPage={currentPage}
                 pageSize={pageSize}
                 totalUsersCount={totalUsersCount}
+                portionSize={portionSize}
 
                 follow={followTC}
                 unfollow={unfollowTC}
@@ -41,41 +42,3 @@ export const UsersContainerFunctional = () => {
             />
         </>
 }
-
-// type AuthRedirectComponentPropsType = {
-//     users: Array<userType>
-//     isAuth: boolean
-//     pageSize: number
-//     totalUsersCount: number
-//     currentPage: number
-//     isFetching: boolean
-//     followingInProgress: Array<number>
-//
-//     followTC: (userID: number) => void
-//     unfollowTC: (userID: number) => void
-//     setUsers: (users: Array<userType>) => void
-//     setCurrentPage: (currentPage: number) => void
-//     setToggleIsFetching: (isFetching: boolean) => void
-//     toggleFollowingProgress: (isFetching: boolean, userId: number) => void
-// }
-// const AuthRedirectComponent = (props: AuthRedirectComponentPropsType) => {
-//     if (!props.isAuth) return <Redirect to="/login"/>
-//     return <UsersContainerCOPY {...props}/>
-// }
-//
-// let MSTP = (state: stateAllType) => {
-//     return {
-//         users: getUsersRESelector(state),
-//         isAuth: getIsAuth(state),
-//         pageSize: getPageSize(state),
-//         totalUsersCount: getTotalUsersCount(state),
-//         currentPage: getCurrentPage(state),
-//         isFetching: getIsFetching(state),
-//         followingInProgress: getFollowingInProgress(state)
-//     }
-// }
-//
-// export default connect(MSTP, {
-//     followTC, unfollowTC, setUsers, setCurrentPage,
-//     setToggleIsFetching, toggleFollowingProgress
-// })(AuthRedirectComponent)

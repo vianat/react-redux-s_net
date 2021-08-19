@@ -8,7 +8,8 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
-    followingInProgress: []
+    followingInProgress: [],
+    portionSize: 10
 }
 
 const usersReducer = (state: usersStateType = initialState, action: any): usersStateType => {
@@ -135,6 +136,7 @@ export type userType = {
 }
 type usersStateType = {
     users: Array<userType>,
+    portionSize: number,
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,

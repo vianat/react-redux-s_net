@@ -9,8 +9,9 @@ type propsUsersType = {
     pageSize: number
     currentPage: number
     followingInProgress: Array<number>
+    portionSize: number
 
-    follow: (userID: number) => void,
+    follow: (userID: number) => void
     unfollow: (userID: number) => void
     onPageChanger: (page: number)=> void
 }
@@ -23,6 +24,7 @@ const Users = (props: propsUsersType) => {
                        totalUsersCount={props.totalUsersCount}
                        pageSize={props.pageSize}
                        currentPage={props.currentPage}
+                       portionSize={props.portionSize}
                        onPageChanger={props.onPageChanger}/>
             <div>
                 {props.users.map(u => <User user={u}
