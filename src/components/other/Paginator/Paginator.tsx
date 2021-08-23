@@ -36,7 +36,6 @@ import styles from "./Paginator.module.css";
 import React, {useState} from "react";
 import {userType} from "../../../redux/users-reducer";
 
-
 export type PaginatorPropsType = {
     users: Array<userType>
     currentPage: number;
@@ -46,7 +45,6 @@ export type PaginatorPropsType = {
 
     onPageChanger: (page: number)=> void
 }
-
 
 const Paginator = (props: PaginatorPropsType) => {
 
@@ -59,7 +57,6 @@ const Paginator = (props: PaginatorPropsType) => {
     let [portionNumber,setPortionNumber] = useState<number>(1)
     let leftPortionPageNumber = (portionNumber - 1) * props.portionSize + 1
     let rightPortionPageNumber = portionNumber * props.portionSize
-
 
     return <div className={styles.paginator}>
 

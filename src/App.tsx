@@ -1,13 +1,8 @@
 import React from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
-import News from "./components/News/News";
-import Settings from "./components/Settings/Settings";
-import Music from "./components/Music/Music";
 import {Route, withRouter} from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import LoginPage from "./components/Login/LoginPage";
 import {connect} from "react-redux";
 import store, {stateAllType} from "./redux/redux-store";
@@ -21,6 +16,13 @@ import {HashRouter} from "react-router-dom";
 import {initializeAppTC} from "./redux/app-reducer";
 import Preloader from "./components/other/Preloader/Preloader";
 import {UsersContainerFunctional} from "./components/Users/UsersContainerFunctional";
+import {WithSuspense} from "./hoc/WithSuspense";
+
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+const News = React.lazy(() => import('./components/News/News'));
+const Settings = React.lazy(() => import('./components/Settings/Settings'));
+const Music = React.lazy(() => import('./components/Music/Music'));
 
 type MSTPPropsType = {
     profilePage: profileType,
@@ -51,14 +53,16 @@ class App extends React.Component<AppPropsType, {}> {
                 <HeaderContainer/>
                 <Navbar/>
                 <div className="main_content">
-                    <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                    <Route path='/profile/:userid?' render={() => <ProfileContainer/>}/>
-                    <Route path='/users' render={() => <UsersContainerFunctional/>}/>
-                    <Route path='/login' render={() => <LoginPage/>}/>
+                    <Route path='/dialogs' render={WithSuspense(DialogsContainer)}/>
+                    <Route path='/profile/:userid?' render={WithSuspense(ProfileContainer)}/>
 
-                    <Route path='/news' component={News}/>
-                    <Route path='/music' component={Music}/>
-                    <Route path='/settings' component={Settings}/>
+                    <Route path='/users' render={() => <UsersContainerFunctional/>}/>
+                    {/*<Route path='/users' render={() => WithSuspense(UsersContainerFunctional)}/>*/}
+                    <Route path='/login' render={() => WithSuspense(LoginPage)}/>
+
+                    <Route path='/news' render={WithSuspense(News)}/>
+                    <Route path='/music' render={WithSuspense(Music)}/>
+                    <Route path='/settings' render={WithSuspense(Settings)}/>
                 </div>
             </div>
         );
